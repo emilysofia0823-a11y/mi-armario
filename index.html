@@ -54,9 +54,11 @@ header{
 .sparkle:nth-child(3){animation-delay:.9s;}
 @keyframes twinkle{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.8);}}
 
-.tabs{display:flex;gap:8px;}
-.tab{flex:1;text-align:center;padding:10px 8px;border-radius:50px;border:2px solid rgba(255,255,255,.5);background:rgba(255,255,255,.18);color:#fff;font-weight:600;font-size:0.82rem;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.tabs{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;}
+.tabs::-webkit-scrollbar{height:0;}
+.tab{position:relative;flex:0 0 auto;text-align:center;padding:10px 14px;border-radius:50px;border:2px solid rgba(255,255,255,.5);background:rgba(255,255,255,.18);color:#fff;font-weight:600;font-size:0.82rem;cursor:pointer;transition:all .2s;white-space:nowrap;}
 .tab.active{background:#fff;color:var(--pink-deep);border-color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.15);}
+.tab-badge{position:absolute;top:-6px;right:-6px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff;font-size:0.65rem;font-weight:800;border-radius:50%;min-width:18px;height:18px;line-height:18px;padding:0 3px;box-shadow:0 2px 6px rgba(0,0,0,.2);}
 
 .wrap{max-width:1000px;margin:0 auto;padding:20px 16px 0;}
 
@@ -117,6 +119,38 @@ header{
 .saved-outfit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;}
 .saved-outfit-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;background:var(--pink-soft);}
 .saved-del{background:none;border:none;color:var(--muted);font-size:0.8rem;cursor:pointer;float:right;}
+.btn-send{background:var(--gold);color:var(--text);border:none;padding:9px 16px;border-radius:50px;font-weight:700;font-size:0.8rem;cursor:pointer;}
+.btn-send:hover{background:var(--gold-deep);color:#fff;}
+
+/* ── Amigas / grupos / revisiones ── */
+.section-title{font-family:'Fredoka',sans-serif;font-weight:600;color:var(--purple-deep);font-size:1.02rem;margin:6px 0 12px;display:flex;align-items:center;gap:8px;}
+.section-title .count{background:var(--lavender);color:var(--purple-deep);font-size:0.68rem;font-weight:800;border-radius:50px;padding:2px 9px;}
+.friend-card,.request-card,.group-card,.review-card{background:var(--card);border:2px solid var(--border);border-radius:18px;padding:14px 16px;margin-bottom:10px;box-shadow:0 3px 0 var(--border);}
+.friend-row{display:flex;align-items:center;gap:10px;}
+.friend-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;flex-shrink:0;}
+.friend-email{font-weight:700;font-size:0.88rem;word-break:break-all;}
+.friend-actions{margin-left:auto;display:flex;gap:6px;flex-shrink:0;}
+.btn-tiny-ok{background:#3FCF7F;color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:0.95rem;cursor:pointer;}
+.btn-tiny-x{background:#FF6B6B;color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:0.95rem;cursor:pointer;}
+.btn-tiny-remove{background:none;border:none;color:var(--muted);font-size:0.78rem;cursor:pointer;text-decoration:underline;}
+.group-members{font-size:0.75rem;color:var(--muted);margin-top:4px;}
+.checklist{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto;margin-bottom:10px;}
+.checklist label{display:flex;align-items:center;gap:8px;font-size:0.85rem;background:var(--pink-soft);padding:9px 12px;border-radius:12px;cursor:pointer;}
+.review-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.82rem;color:var(--muted);}
+.review-header b{color:var(--text);}
+.review-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;margin-bottom:12px;}
+.review-items img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;background:var(--pink-soft);}
+.reaction-buttons{display:flex;gap:10px;margin-bottom:10px;}
+.btn-reaction{flex:1;border:2px solid var(--border);background:#fff;border-radius:14px;padding:11px;font-size:1.3rem;cursor:pointer;transition:all .15s;}
+.btn-reaction.aprobado{border-color:#3FCF7F;background:#EAFBF1;}
+.btn-reaction.rechazado{border-color:#FF6B6B;background:#FFEDED;}
+.comment-input{width:100%;background:var(--pink-soft);border:1px solid var(--border);border-radius:12px;padding:9px 12px;font-size:0.85rem;font-family:inherit;outline:none;margin-bottom:8px;}
+.comment-input:focus{border-color:var(--pink);}
+.reactions-list{border-top:1px dashed var(--border);padding-top:10px;margin-top:6px;}
+.reaction-item{display:flex;align-items:flex-start;gap:8px;font-size:0.8rem;margin-bottom:8px;}
+.reaction-icon{font-size:1rem;flex-shrink:0;}
+.reaction-item .re{color:var(--muted);}
+.pending-tag{color:var(--muted);font-style:italic;}
 
 /* ── FAB + modal ── */
 .fab{position:fixed;bottom:20px;right:20px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:none;font-size:1.7rem;cursor:pointer;box-shadow:0 8px 20px rgba(176,110,255,.5);z-index:200;}
@@ -193,6 +227,8 @@ header{
     <div class="tab active" id="tabArmario" onclick="cambiarSeccion('armario')">👗 Armario</div>
     <div class="tab" id="tabRef" onclick="cambiarSeccion('referencias')">📌 Referencias</div>
     <div class="tab" id="tabOutfits" onclick="cambiarSeccion('outfits')">💫 Outfits</div>
+    <div class="tab" id="tabAmigas" onclick="cambiarSeccion('amigas')">👯 Amigas<span class="tab-badge" id="badgeAmigas" style="display:none;">0</span></div>
+    <div class="tab" id="tabRevisiones" onclick="cambiarSeccion('revisiones')">💌 Revisiones<span class="tab-badge" id="badgeRevisiones" style="display:none;">0</span></div>
   </div>
 </header>
 
@@ -241,6 +277,49 @@ header{
   </div>
 </div>
 
+<!-- MODAL: agregar amiga -->
+<div class="overlay" id="amigaOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrarModal('amigaOverlay')">✕</button>
+    <h3>👯 Agregar amiga</h3>
+    <div class="field">
+      <label>Correo de tu amiga</label>
+      <input type="email" id="amigaEmail" placeholder="correo@ejemplo.com"/>
+    </div>
+    <button class="modal-send" onclick="enviarSolicitudAmistad()">💌 Enviar solicitud</button>
+  </div>
+</div>
+
+<!-- MODAL: crear grupo -->
+<div class="overlay" id="grupoOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrarModal('grupoOverlay')">✕</button>
+    <h3>👯‍♀️ Nuevo grupo</h3>
+    <div class="field">
+      <label>Nombre del grupo</label>
+      <input type="text" id="grupoNombre" placeholder="Ej: Mis chismosas favoritas"/>
+    </div>
+    <div class="field">
+      <label>Elige tus amigas</label>
+      <div class="checklist" id="grupoChecklist"></div>
+    </div>
+    <button class="modal-send" onclick="guardarGrupo()">✨ Crear grupo</button>
+  </div>
+</div>
+
+<!-- MODAL: enviar outfit a revisión -->
+<div class="overlay" id="revisionOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrarModal('revisionOverlay')">✕</button>
+    <h3>📤 Enviar a revisión</h3>
+    <div class="field">
+      <label>¿A quién se lo mandas?</label>
+      <select id="revisionDestino"></select>
+    </div>
+    <button class="modal-send" onclick="confirmarEnvioRevision()">💌 Mandar para que opinen</button>
+  </div>
+</div>
+
 <script>
 var CATS=[
   {id:'tops',nombre:'Tops',icono:'👚'},
@@ -251,17 +330,21 @@ var CATS=[
   {id:'accesorios',nombre:'Accesorios',icono:'👜'}
 ];
 var prendas=[], referencias=[], outfitsGuardados=[];
+var amigos=[], solicitudes=[], grupos=[], revisionesParaMi=[], revisionesMias=[], usuariosDirectorio={};
 var seccion='armario', categoriaActual=null;
 var outfitActual=null;
 var archivoSeleccionado=null;
+var outfitParaEnviar=null;
 
 function catInfo(id){ return CATS.find(function(c){return c.id===id;}) || {id:id,nombre:id,icono:'✨'}; }
+function emailDe(uidPersona){ return (usuariosDirectorio[uidPersona]&&usuariosDirectorio[uidPersona].email)||'alguien'; }
+function inicialDe(email){ return (email||'?').charAt(0).toUpperCase(); }
 
 function cambiarSeccion(s){
   seccion=s; categoriaActual=null;
-  ['tabArmario','tabRef','tabOutfits'].forEach(function(id){document.getElementById(id).classList.remove('active');});
-  document.getElementById({armario:'tabArmario',referencias:'tabRef',outfits:'tabOutfits'}[s]).classList.add('active');
-  document.getElementById('fab').style.display = s==='outfits' ? 'none' : 'flex';
+  ['tabArmario','tabRef','tabOutfits','tabAmigas','tabRevisiones'].forEach(function(id){document.getElementById(id).classList.remove('active');});
+  document.getElementById({armario:'tabArmario',referencias:'tabRef',outfits:'tabOutfits',amigas:'tabAmigas',revisiones:'tabRevisiones'}[s]).classList.add('active');
+  document.getElementById('fab').style.display = (s==='outfits'||s==='revisiones') ? 'none' : 'flex';
   render();
 }
 
@@ -269,6 +352,16 @@ function render(){
   if(seccion==='armario'){ categoriaActual ? renderCategoriaArmario() : renderHomeArmario(); }
   else if(seccion==='referencias'){ renderReferencias(); }
   else if(seccion==='outfits'){ renderOutfits(); }
+  else if(seccion==='amigas'){ renderAmigas(); }
+  else if(seccion==='revisiones'){ renderRevisiones(); }
+  actualizarBadges();
+}
+
+function actualizarBadges(){
+  var bA=document.getElementById('badgeAmigas'), bR=document.getElementById('badgeRevisiones');
+  if(solicitudes.length>0){ bA.style.display='flex'; bA.textContent=solicitudes.length; } else bA.style.display='none';
+  var sinResponder=revisionesParaMi.filter(function(r){return !r._miReaccion;}).length;
+  if(sinResponder>0){ bR.style.display='flex'; bR.textContent=sinResponder; } else bR.style.display='none';
 }
 
 function renderHomeArmario(){
@@ -339,7 +432,8 @@ function renderOutfits(){
     outfitsGuardados.forEach(function(o){
       var box2=document.createElement('div'); box2.className='saved-outfit';
       var grid='<div class="saved-outfit-grid">'+o.prendas.map(function(p){return '<img src="'+p.imagenUrl+'" title="'+escapeHtml(p.nombre)+'"/>';}).join('')+'</div>';
-      box2.innerHTML='<button class="saved-del" onclick="eliminarOutfitGuardado(\''+o._id+'\')">✕</button><div class="saved-outfit-name">'+escapeHtml(o.nombre)+'</div>'+grid;
+      box2.innerHTML='<button class="saved-del" onclick="eliminarOutfitGuardado(\''+o._id+'\')">✕</button><div class="saved-outfit-name">'+escapeHtml(o.nombre)+'</div>'+grid+
+        '<div style="margin-top:10px;"><button class="btn-send" onclick="abrirEnviarRevisionGuardado(\''+o._id+'\')">📤 Enviar a revisión</button></div>';
       wrap.appendChild(box2);
     });
   }
@@ -365,6 +459,7 @@ function pintarOutfitActual(){
     '<div class="outfit-actions">'+
       '<button class="btn-soft" onclick="generarOutfit()">🔀 Otra combinación</button>'+
       '<button class="btn-magic" onclick="guardarOutfitActual()">💾 Guardar outfit</button>'+
+      '<button class="btn-send" onclick="abrirEnviarRevisionActual()">📤 Enviar a revisión</button>'+
     '</div>';
 }
 
@@ -386,6 +481,7 @@ function escapeHtml(s){var d=document.createElement('div');d.textContent=s||'';r
 function abrirAgregar(){
   if(seccion==='armario') abrirModalPrenda();
   else if(seccion==='referencias') abrirModalReferencia();
+  else if(seccion==='amigas') abrirModalAmiga();
 }
 function cerrarModal(id){ document.getElementById(id).classList.remove('show'); archivoSeleccionado=null; }
 function previsualizar(input,imgId){
@@ -427,6 +523,205 @@ function guardarReferencia(){
 function eliminarPrenda(id){ if(confirm('¿Eliminar esta prenda?') && window._eliminarPrenda) window._eliminarPrenda(id); }
 function eliminarReferencia(id){ if(confirm('¿Eliminar esta referencia?') && window._eliminarReferencia) window._eliminarReferencia(id); }
 
+// ── AMIGAS ──
+function renderAmigas(){
+  var wrap=document.getElementById('wrap'); wrap.innerHTML='';
+  var head=document.createElement('div'); head.className='detail-head';
+  head.innerHTML='<span class="detail-icon">👯</span><span class="detail-name">Amigas</span>';
+  wrap.appendChild(head);
+
+  if(solicitudes.length>0){
+    var t1=document.createElement('div'); t1.className='section-title';
+    t1.innerHTML='💌 Solicitudes pendientes <span class="count">'+solicitudes.length+'</span>';
+    wrap.appendChild(t1);
+    solicitudes.forEach(function(s){
+      var email=s.deEmail||'alguien';
+      var card=document.createElement('div'); card.className='request-card';
+      card.innerHTML='<div class="friend-row"><div class="friend-avatar">'+inicialDe(email)+'</div><div class="friend-email">'+escapeHtml(email)+'</div>'+
+        '<div class="friend-actions"><button class="btn-tiny-ok" onclick="responderSolicitud(\''+s._id+'\',true)">✓</button><button class="btn-tiny-x" onclick="responderSolicitud(\''+s._id+'\',false)">✕</button></div></div>';
+      wrap.appendChild(card);
+    });
+  }
+
+  var t2=document.createElement('div'); t2.className='section-title';
+  t2.innerHTML='👭 Mis amigas <span class="count">'+amigos.length+'</span>';
+  wrap.appendChild(t2);
+  if(amigos.length===0){
+    wrap.innerHTML+='<div class="empty-cat">Aún no tienes amigas agregadas 🌸<br/>Toca el botón + para invitar a una.</div>';
+  } else {
+    amigos.forEach(function(a){
+      var card=document.createElement('div'); card.className='friend-card';
+      card.innerHTML='<div class="friend-row"><div class="friend-avatar">'+inicialDe(a.email)+'</div><div class="friend-email">'+escapeHtml(a.email)+'</div>'+
+        '<div class="friend-actions"><button class="btn-tiny-remove" onclick="quitarAmiga(\''+a._id+'\')">Quitar</button></div></div>';
+      wrap.appendChild(card);
+    });
+  }
+
+  var t3=document.createElement('div'); t3.className='section-title'; t3.style.marginTop='18px';
+  t3.innerHTML='👯‍♀️ Mis grupos <span class="count">'+grupos.length+'</span>';
+  wrap.appendChild(t3);
+  var btnGrupo=document.createElement('button'); btnGrupo.className='btn-soft'; btnGrupo.style.marginBottom='12px'; btnGrupo.textContent='+ Crear grupo';
+  btnGrupo.onclick=abrirModalGrupo;
+  wrap.appendChild(btnGrupo);
+  if(grupos.length===0){
+    wrap.innerHTML+='<div class="empty-cat" style="padding:14px 4px;">Arma un grupo con tus amigas para mandarles outfits a todas a la vez.</div>';
+  } else {
+    grupos.forEach(function(g){
+      var card=document.createElement('div'); card.className='group-card';
+      card.innerHTML='<div class="friend-email">'+escapeHtml(g.nombre)+'</div><div class="group-members">'+g.miembros.length+' integrante'+(g.miembros.length===1?'':'s')+'</div>';
+      wrap.appendChild(card);
+    });
+  }
+}
+
+function abrirModalAmiga(){
+  document.getElementById('amigaEmail').value='';
+  document.getElementById('amigaOverlay').classList.add('show');
+}
+function enviarSolicitudAmistad(){
+  var email=document.getElementById('amigaEmail').value.trim().toLowerCase();
+  if(!email){ alert('Escribe un correo'); return; }
+  if(window._enviarSolicitud) window._enviarSolicitud(email);
+  cerrarModal('amigaOverlay');
+}
+function responderSolicitud(id,aceptar){ if(window._responderSolicitud) window._responderSolicitud(id,aceptar); }
+function quitarAmiga(id){ if(confirm('¿Quitar a esta amiga?') && window._quitarAmiga) window._quitarAmiga(id); }
+
+function abrirModalGrupo(){
+  document.getElementById('grupoNombre').value='';
+  var cl=document.getElementById('grupoChecklist'); cl.innerHTML='';
+  if(amigos.length===0){ cl.innerHTML='<div class="pending-tag">Agrega amigas primero para poder armar un grupo.</div>'; }
+  else{
+    amigos.forEach(function(a){
+      var lbl=document.createElement('label');
+      lbl.innerHTML='<input type="checkbox" value="'+a.uid+'"/> '+escapeHtml(a.email);
+      cl.appendChild(lbl);
+    });
+  }
+  document.getElementById('grupoOverlay').classList.add('show');
+}
+function guardarGrupo(){
+  var nombre=document.getElementById('grupoNombre').value.trim();
+  if(!nombre){ alert('Ponle un nombre al grupo'); return; }
+  var checks=document.querySelectorAll('#grupoChecklist input[type=checkbox]:checked');
+  if(checks.length===0){ alert('Elige al menos una amiga'); return; }
+  var miembros=Array.prototype.map.call(checks,function(c){return c.value;});
+  if(window._crearGrupo) window._crearGrupo(nombre,miembros);
+  cerrarModal('grupoOverlay');
+}
+
+// ── REVISIONES (mandar outfit / reaccionar) ──
+function abrirEnviarRevisionActual(){
+  if(!outfitActual) return;
+  outfitParaEnviar={nombre:'Look de hoy',prendas:outfitActual.map(function(p){return{nombre:p.nombre,imagenUrl:p.imagenUrl};})};
+  abrirModalRevision();
+}
+function abrirEnviarRevisionGuardado(id){
+  var o=outfitsGuardados.find(function(x){return x._id===id;});
+  if(!o) return;
+  outfitParaEnviar={nombre:o.nombre,prendas:o.prendas};
+  abrirModalRevision();
+}
+function abrirModalRevision(){
+  if(amigos.length===0&&grupos.length===0){ alert('Agrega amigas o crea un grupo primero, en la pestaña 👯 Amigas'); return; }
+  var sel=document.getElementById('revisionDestino'); sel.innerHTML='';
+  if(amigos.length>0){
+    var og=document.createElement('optgroup'); og.label='Amigas';
+    amigos.forEach(function(a){ var o=document.createElement('option'); o.value='amiga:'+a.uid; o.textContent=a.email; og.appendChild(o); });
+    sel.appendChild(og);
+  }
+  if(grupos.length>0){
+    var og2=document.createElement('optgroup'); og2.label='Grupos';
+    grupos.forEach(function(g){ var o=document.createElement('option'); o.value='grupo:'+g._id; o.textContent=g.nombre; og2.appendChild(o); });
+    sel.appendChild(og2);
+  }
+  document.getElementById('revisionOverlay').classList.add('show');
+}
+function confirmarEnvioRevision(){
+  var val=document.getElementById('revisionDestino').value;
+  if(!val||!outfitParaEnviar) return;
+  var tipo=val.split(':')[0], id=val.split(':')[1];
+  var destinatarios=[], etiqueta='';
+  if(tipo==='amiga'){
+    var a=amigos.find(function(x){return x.uid===id;});
+    destinatarios=[id]; etiqueta=a?a.email:'una amiga';
+  } else {
+    var g=grupos.find(function(x){return x._id===id;});
+    if(g){ destinatarios=g.miembros; etiqueta=g.nombre; }
+  }
+  if(destinatarios.length===0) return;
+  if(window._enviarRevision) window._enviarRevision(outfitParaEnviar.nombre,outfitParaEnviar.prendas,destinatarios,etiqueta);
+  outfitParaEnviar=null;
+  cerrarModal('revisionOverlay');
+  alert('✨ ¡Listo! Ya se lo mandaste para que opinen.');
+}
+
+function renderRevisiones(){
+  var wrap=document.getElementById('wrap'); wrap.innerHTML='';
+  var head=document.createElement('div'); head.className='detail-head';
+  head.innerHTML='<span class="detail-icon">💌</span><span class="detail-name">Revisiones</span>';
+  wrap.appendChild(head);
+
+  var t1=document.createElement('div'); t1.className='section-title';
+  t1.innerHTML='👀 Para que opines <span class="count">'+revisionesParaMi.length+'</span>';
+  wrap.appendChild(t1);
+  if(revisionesParaMi.length===0){
+    wrap.innerHTML+='<div class="empty-cat">Nadie te ha mandado un outfit para opinar todavía.</div>';
+  } else {
+    revisionesParaMi.forEach(function(r){ wrap.appendChild(renderReviewCardParaMi(r)); });
+  }
+
+  var t2=document.createElement('div'); t2.className='section-title'; t2.style.marginTop='18px';
+  t2.innerHTML='📤 Mis envíos <span class="count">'+revisionesMias.length+'</span>';
+  wrap.appendChild(t2);
+  if(revisionesMias.length===0){
+    wrap.innerHTML+='<div class="empty-cat">Todavía no has mandado ningún outfit a revisión. Ve a 💫 Outfits y manda uno.</div>';
+  } else {
+    revisionesMias.forEach(function(r){ wrap.appendChild(renderReviewCardMia(r)); });
+  }
+}
+
+function renderReviewCardParaMi(r){
+  var card=document.createElement('div'); card.className='review-card';
+  var header='<div class="review-header">De <b>'+escapeHtml(r.autorEmail||'alguien')+'</b>'+(r.etiqueta?' · '+escapeHtml(r.etiqueta):'')+'</div>';
+  var items='<div class="review-items">'+r.prendas.map(function(p){return '<img src="'+p.imagenUrl+'" title="'+escapeHtml(p.nombre)+'"/>';}).join('')+'</div>';
+  var ya=r._miReaccion;
+  var botones='<div class="reaction-buttons">'+
+    '<button class="btn-reaction'+(ya&&ya.tipo==='rechazado'?' rechazado':'')+'" onclick="reaccionar(\''+r._id+'\',\'rechazado\')">❌</button>'+
+    '<button class="btn-reaction'+(ya&&ya.tipo==='aprobado'?' aprobado':'')+'" onclick="reaccionar(\''+r._id+'\',\'aprobado\')">✅</button>'+
+    '</div>';
+  var comentario='<input type="text" class="comment-input" id="comentario_'+r._id+'" placeholder="Deja una sugerencia (opcional)" value="'+(ya&&ya.comentario?escapeHtml(ya.comentario).replace(/"/g,'&quot;'):'')+'" onblur="guardarComentario(\''+r._id+'\')"/>';
+  card.innerHTML=header+items+botones+comentario;
+  return card;
+}
+
+function renderReviewCardMia(r){
+  var card=document.createElement('div'); card.className='review-card';
+  var header='<div class="review-header">Enviado a <b>'+escapeHtml(r.etiqueta||'')+'</b></div>';
+  var items='<div class="review-items">'+r.prendas.map(function(p){return '<img src="'+p.imagenUrl+'" title="'+escapeHtml(p.nombre)+'"/>';}).join('')+'</div>';
+  var lista='<div class="reactions-list">'+r.destinatarios.map(function(destUid){
+    var re=(r._reacciones||{})[destUid];
+    var email=emailDe(destUid);
+    if(!re) return '<div class="reaction-item"><span class="reaction-icon">⏳</span><span class="pending-tag">'+escapeHtml(email)+' todavía no ha respondido</span></div>';
+    var icono=re.tipo==='aprobado'?'✅':'❌';
+    return '<div class="reaction-item"><span class="reaction-icon">'+icono+'</span><div><b>'+escapeHtml(email)+'</b>'+(re.comentario?'<div class="re">"'+escapeHtml(re.comentario)+'"</div>':'')+'</div></div>';
+  }).join('')+'</div>';
+  card.innerHTML=header+items+lista;
+  return card;
+}
+
+function reaccionar(revId,tipo){
+  var comentarioEl=document.getElementById('comentario_'+revId);
+  var comentario=comentarioEl?comentarioEl.value.trim():'';
+  if(window._reaccionar) window._reaccionar(revId,tipo,comentario);
+}
+function guardarComentario(revId){
+  var r=revisionesParaMi.find(function(x){return x._id===revId;});
+  if(!r||!r._miReaccion) return; // solo re-guarda si ya reacciono, para no perder el tipo
+  var comentarioEl=document.getElementById('comentario_'+revId);
+  if(window._reaccionar) window._reaccionar(revId,r._miReaccion.tipo,comentarioEl.value.trim());
+}
+
 // ── Acceso (login / registro) ──
 var authModo='login';
 function cambiarAuthTab(modo){
@@ -456,7 +751,7 @@ render();
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, doc, deleteDoc, onSnapshot, serverTimestamp, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc, doc, setDoc, getDocs, deleteDoc, updateDoc, onSnapshot, serverTimestamp, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -464,8 +759,9 @@ var app=initializeApp({apiKey:"AIzaSyB7fkzZNNNY5oWt5oSAT-2wSwtJh69TKvs",authDoma
 var db=getFirestore(app);
 var storage=getStorage(app);
 var auth=getAuth(app);
-var uid=null;
+var uid=null, miEmail=null;
 var unsubs=[];
+var revSubs={}; // unsubscribe de reacciones por revision (para "Mis envios")
 
 function traducirErrorAuth(e){
   var c=e&&e.code||'';
@@ -489,6 +785,68 @@ window._cerrarSesion=async function(){ await signOut(auth); };
 function limpiarSuscripciones(){
   unsubs.forEach(function(u){ u(); });
   unsubs=[];
+  Object.keys(revSubs).forEach(function(k){ revSubs[k](); });
+  revSubs={};
+}
+
+function calcularAmigosYSolicitudes(listaDe,listaPara){
+  var amigosList=[], solicitudesList=[];
+  listaDe.forEach(function(a){
+    if(a.estado==='aceptada') amigosList.push({_id:a._id,uid:a.para,email:a.paraEmail});
+    // si yo la envie y sigue pendiente, no aparece en "solicitudes" (esas son las que ME llegan)
+  });
+  listaPara.forEach(function(a){
+    if(a.estado==='aceptada') amigosList.push({_id:a._id,uid:a.de,email:a.deEmail});
+    else if(a.estado==='pendiente') solicitudesList.push({_id:a._id,de:a.de,deEmail:a.deEmail});
+  });
+  window.amigos=amigosList;
+  window.solicitudes=solicitudesList;
+  var dir=window.usuariosDirectorio||{};
+  amigosList.forEach(function(a){ dir[a.uid]={email:a.email}; });
+  window.usuariosDirectorio=dir;
+  if(window.render) window.render();
+}
+
+function suscribirRevisionesMias(){
+  var qMias=query(collection(db,'outfit_revisiones'),where('autorUid','==',uid));
+  unsubs.push(onSnapshot(qMias,function(snap){
+    var lista=[];
+    snap.forEach(function(d){ lista.push(Object.assign({_id:d.id,_reacciones:{}},d.data())); });
+    lista.sort(function(a,b){var fa=a.fechaCreacion&&a.fechaCreacion.seconds||0,fb=b.fechaCreacion&&b.fechaCreacion.seconds||0;return fb-fa;});
+    // limpia listeners de reacciones que ya no aplican
+    var idsActuales=lista.map(function(r){return r._id;});
+    Object.keys(revSubs).forEach(function(id){ if(idsActuales.indexOf(id)===-1){ revSubs[id](); delete revSubs[id]; } });
+    lista.forEach(function(r){
+      if(revSubs[r._id]) return; // ya suscrito
+      revSubs[r._id]=onSnapshot(collection(db,'outfit_revisiones',r._id,'reacciones'),function(snapR){
+        var mapa={};
+        snapR.forEach(function(dr){ mapa[dr.id]=dr.data(); });
+        var actual=window.revisionesMias.find(function(x){return x._id===r._id;});
+        if(actual){ actual._reacciones=mapa; if(window.render) window.render(); }
+      });
+    });
+    window.revisionesMias=lista;
+    if(window.render) window.render();
+  }));
+}
+
+function suscribirRevisionesParaMi(){
+  var qParaMi=query(collection(db,'outfit_revisiones'),where('destinatarios','array-contains',uid));
+  unsubs.push(onSnapshot(qParaMi,function(snap){
+    var lista=[];
+    snap.forEach(function(d){ lista.push(Object.assign({_id:d.id,_miReaccion:null},d.data())); });
+    lista.sort(function(a,b){var fa=a.fechaCreacion&&a.fechaCreacion.seconds||0,fb=b.fechaCreacion&&b.fechaCreacion.seconds||0;return fb-fa;});
+    lista.forEach(function(r){
+      var subKey='mireaccion_'+r._id;
+      if(revSubs[subKey]) return;
+      revSubs[subKey]=onSnapshot(doc(db,'outfit_revisiones',r._id,'reacciones',uid),function(dSnap){
+        var actual=window.revisionesParaMi.find(function(x){return x._id===r._id;});
+        if(actual){ actual._miReaccion=dSnap.exists()?dSnap.data():null; if(window.render) window.render(); }
+      });
+    });
+    window.revisionesParaMi=lista;
+    if(window.render) window.render();
+  }));
 }
 
 function iniciarSuscripciones(){
@@ -510,19 +868,47 @@ function iniciarSuscripciones(){
     lista.sort(function(a,b){var fa=a.fechaCreacion&&a.fechaCreacion.seconds||0,fb=b.fechaCreacion&&b.fechaCreacion.seconds||0;return fb-fa;});
     window.outfitsGuardados=lista; if(window.render) window.render();
   }));
+
+  var listaDe=[], listaPara=[], recibidoDe=false, recibidoPara=false;
+  var qAmistadDe=query(collection(db,'amistades'),where('de','==',uid));
+  unsubs.push(onSnapshot(qAmistadDe,function(snap){
+    listaDe=[]; snap.forEach(function(d){listaDe.push(Object.assign({_id:d.id},d.data()));});
+    recibidoDe=true;
+    if(recibidoPara) calcularAmigosYSolicitudes(listaDe,listaPara);
+  }));
+  var qAmistadPara=query(collection(db,'amistades'),where('para','==',uid));
+  unsubs.push(onSnapshot(qAmistadPara,function(snap){
+    listaPara=[]; snap.forEach(function(d){listaPara.push(Object.assign({_id:d.id},d.data()));});
+    recibidoPara=true;
+    if(recibidoDe) calcularAmigosYSolicitudes(listaDe,listaPara);
+  }));
+
+  var qGrupos=query(collection(db,'grupos'),where('miembros','array-contains',uid));
+  unsubs.push(onSnapshot(qGrupos,function(snap){
+    var lista=[]; snap.forEach(function(d){lista.push(Object.assign({_id:d.id},d.data()));});
+    window.grupos=lista; if(window.render) window.render();
+  }));
+
+  suscribirRevisionesMias();
+  suscribirRevisionesParaMi();
 }
 
-onAuthStateChanged(auth,function(user){
+onAuthStateChanged(auth,async function(user){
   if(user){
-    uid=user.uid;
+    uid=user.uid; miEmail=user.email;
+    await setDoc(doc(db,'usuarios',uid),{email:miEmail,fechaCreacion:serverTimestamp()},{merge:true}).catch(function(){});
     document.getElementById('authWrap').style.display='none';
     document.getElementById('appScreen').style.display='block';
     window.prendas=[]; window.referencias=[]; window.outfitsGuardados=[];
+    window.amigos=[]; window.solicitudes=[]; window.grupos=[];
+    window.revisionesMias=[]; window.revisionesParaMi=[]; window.usuariosDirectorio={};
     iniciarSuscripciones();
   } else {
-    uid=null;
+    uid=null; miEmail=null;
     limpiarSuscripciones();
     window.prendas=[]; window.referencias=[]; window.outfitsGuardados=[];
+    window.amigos=[]; window.solicitudes=[]; window.grupos=[];
+    window.revisionesMias=[]; window.revisionesParaMi=[]; window.usuariosDirectorio={};
     document.getElementById('appScreen').style.display='none';
     document.getElementById('authWrap').style.display='flex';
     document.getElementById('authEmail').value='';
@@ -574,6 +960,55 @@ window._guardarOutfit=async function(outfit){
 window._eliminarOutfit=async function(id){
   try{ await deleteDoc(doc(db,'armario_outfits',id)); }
   catch(e){ alert('Error eliminando: '+e.message); }
+};
+
+// ── Amistades ──
+window._enviarSolicitud=async function(email){
+  try{
+    if(email===miEmail){ alert('Ese es tu propio correo 🌸'); return; }
+    var qU=query(collection(db,'usuarios'),where('email','==',email));
+    var snap=await getDocs(qU);
+    if(snap.empty){ alert('Esa persona todavía no tiene cuenta en Mi Armario. Invítala a registrarse primero 💌'); return; }
+    var otroUid=snap.docs[0].id;
+    var yaExiste=window.amigos.some(function(a){return a.uid===otroUid;}) || window.solicitudes.some(function(s){return s.de===otroUid;});
+    if(yaExiste){ alert('Ya son amigas, o ya tienes una solicitud de esa persona pendiente.'); return; }
+    await addDoc(collection(db,'amistades'),{de:uid,deEmail:miEmail,para:otroUid,paraEmail:email,estado:'pendiente',fechaCreacion:serverTimestamp()});
+    alert('💌 ¡Solicitud enviada!');
+  }catch(e){ alert('Error enviando la solicitud: '+e.message); }
+};
+window._responderSolicitud=async function(id,aceptar){
+  try{
+    if(aceptar) await updateDoc(doc(db,'amistades',id),{estado:'aceptada'});
+    else await deleteDoc(doc(db,'amistades',id));
+  }catch(e){ alert('Error: '+e.message); }
+};
+window._quitarAmiga=async function(id){
+  try{ await deleteDoc(doc(db,'amistades',id)); }
+  catch(e){ alert('Error: '+e.message); }
+};
+
+// ── Grupos ──
+window._crearGrupo=async function(nombre,miembros){
+  try{
+    await addDoc(collection(db,'grupos'),{nombre:nombre,creadorUid:uid,miembros:miembros.concat([uid]),fechaCreacion:serverTimestamp()});
+  }catch(e){ alert('Error creando el grupo: '+e.message); }
+};
+
+// ── Revisiones de outfit ──
+window._enviarRevision=async function(nombre,prendasOutfit,destinatarios,etiqueta){
+  try{
+    await addDoc(collection(db,'outfit_revisiones'),{
+      autorUid:uid,autorEmail:miEmail,nombre:nombre,prendas:prendasOutfit,
+      destinatarios:destinatarios,etiqueta:etiqueta,fechaCreacion:serverTimestamp()
+    });
+  }catch(e){ alert('Error mandando el outfit: '+e.message); }
+};
+window._reaccionar=async function(revId,tipo,comentario){
+  try{
+    await setDoc(doc(db,'outfit_revisiones',revId,'reacciones',uid),{
+      tipo:tipo,comentario:comentario||'',autorEmail:miEmail,fecha:serverTimestamp()
+    },{merge:true});
+  }catch(e){ alert('Error guardando tu opinión: '+e.message); }
 };
 </script>
 </body>
