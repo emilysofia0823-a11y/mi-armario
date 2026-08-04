@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-<title>Mi Armario ✨</title>
+<title>SocialLook ✨</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -195,7 +195,7 @@ header{
 <!-- PANTALLA DE ACCESO (visible antes de iniciar sesión) -->
 <div class="auth-wrap" id="authWrap">
   <div class="auth-box">
-    <div class="auth-logo">✨ Mi Armario</div>
+    <div class="auth-logo">✨ SocialLook</div>
     <div class="auth-sub">Tu guardarropa y tus outfits, en un solo lugar</div>
     <div class="auth-tabs">
       <div class="auth-tab active" id="authTabLogin" onclick="cambiarAuthTab('login')">Iniciar sesión</div>
@@ -219,7 +219,7 @@ header{
 <header>
   <div class="logo-row">
     <span class="sparkle">✨</span>
-    <div class="logo">Mi Armario</div>
+    <div class="logo">SocialLook</div>
     <span class="sparkle">✨</span>
     <button class="logout-btn" onclick="cerrarSesion()">Salir</button>
   </div>
@@ -968,7 +968,7 @@ window._enviarSolicitud=async function(email){
     if(email===miEmail){ alert('Ese es tu propio correo 🌸'); return; }
     var qU=query(collection(db,'usuarios'),where('email','==',email));
     var snap=await getDocs(qU);
-    if(snap.empty){ alert('Esa persona todavía no tiene cuenta en Mi Armario. Invítala a registrarse primero 💌'); return; }
+    if(snap.empty){ alert('Esa persona todavía no tiene cuenta en SocialLook. Invítala a registrarse primero 💌'); return; }
     var otroUid=snap.docs[0].id;
     var yaExiste=window.amigos.some(function(a){return a.uid===otroUid;}) || window.solicitudes.some(function(s){return s.de===otroUid;});
     if(yaExiste){ alert('Ya son amigas, o ya tienes una solicitud de esa persona pendiente.'); return; }
