@@ -42,7 +42,7 @@ header{
 .tabs::-webkit-scrollbar{height:0;}
 .tab{position:relative;flex:0 0 auto;text-align:center;padding:6px 2px 10px;border:none;border-bottom:2px solid transparent;background:none;color:var(--muted);font-weight:500;font-size:0.72rem;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:all .2s;white-space:nowrap;}
 .tab.active{color:var(--ink);border-bottom-color:var(--accent);}
-.tab-badge{position:absolute;top:-4px;right:-10px;background:var(--accent);color:#fff;font-size:0.6rem;font-weight:700;border-radius:50%;min-width:16px;height:16px;line-height:16px;padding:0 3px;}
+.tab-badge{display:inline-flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-size:0.6rem;font-weight:700;border-radius:50%;min-width:16px;height:16px;line-height:1;padding:0 3px;box-sizing:border-box;margin-left:5px;vertical-align:middle;}
 
 .wrap{max-width:1000px;margin:0 auto;padding:28px 16px 0;}
 
@@ -56,7 +56,7 @@ header{
 .cat-tile-icon{font-size:2rem;margin-bottom:10px;display:block;}
 .cat-tile-name{font-family:'Playfair Display',serif;font-weight:600;font-size:0.9rem;color:var(--wine);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;}
 .cat-tile-total{font-size:0.68rem;color:var(--muted);letter-spacing:.3px;}
-.cat-tile-badge{position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;font-size:0.65rem;font-weight:700;border-radius:50%;min-width:20px;height:20px;line-height:20px;padding:0 4px;}
+.cat-tile-badge{position:absolute;top:10px;right:10px;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-size:0.65rem;font-weight:700;border-radius:50%;min-width:20px;height:20px;line-height:1;padding:0 4px;box-sizing:border-box;}
 
 .detail-head{display:flex;align-items:center;gap:12px;padding:2px 2px 20px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:20px;}
 .back-btn{background:none;border:1px solid var(--line);color:var(--ink);border-radius:2px;padding:8px 16px;font-weight:500;font-size:0.7rem;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;}
@@ -136,7 +136,7 @@ header{
 .pending-tag{color:var(--muted);font-style:italic;}
 
 /* ── FAB + modal ── */
-.fab{position:fixed;bottom:22px;right:22px;width:54px;height:54px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:1.6rem;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:200;font-weight:300;}
+.fab{position:fixed;bottom:22px;right:22px;width:54px;height:54px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:1.8rem;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:200;font-weight:300;display:flex;align-items:center;justify-content:center;padding:0;line-height:1;}
 .fab:hover{background:var(--accent);}
 
 .overlay{position:fixed;inset:0;background:rgba(28,25,23,.5);display:none;align-items:center;justify-content:center;z-index:900;padding:16px;}
@@ -257,7 +257,7 @@ header{
       <div class="terminal-frame">
         <div class="terminal-topbar"><span class="terminal-dot blink"></span> PROBANDO_COMBINACIONES.SYS</div>
         <div class="video-frame" id="videoFrame">
-          <iframe id="closetVideo" src="https://www.youtube.com/embed/IuRvL-wJne8?autoplay=1&mute=1&loop=1&playlist=IuRvL-wJne8&controls=0&modestbranding=1&rel=0&playsinline=1" title="Referencia: armario digital" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+          <iframe id="closetVideo" src="https://www.youtube-nocookie.com/embed/IuRvL-wJne8?autoplay=1&mute=1&loop=1&playlist=IuRvL-wJne8&controls=0&rel=0&playsinline=1" title="Referencia: armario digital" allow="autoplay; encrypted-media"></iframe>
           <div class="scanlines"></div>
         </div>
         <div class="terminal-caption">toca las prendas para cambiar el outfit</div>
