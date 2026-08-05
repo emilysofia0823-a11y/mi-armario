@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-<title>SocialLook ✨</title>
+<title>SocialLook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,6 +13,7 @@
 :root{
   --bg:#FAF8F4;--card:#FFFFFF;--ink:#1C1917;--muted:#8A8178;--line:#E5DFD6;
   --accent:#7C4A32;--accent-deep:#5C3624;--accent-soft:#F1E7DC;
+  --wine:#6D2032;--wine-deep:#4E1522;
   --ok:#3F6B4E;--ok-soft:#E9F1EA;--no:#A63B3B;--no-soft:#F7EAEA;
   /* alias de compatibilidad con nombres usados en el resto del CSS */
   --pink:var(--accent);--pink-deep:var(--accent-deep);--pink-soft:var(--accent-soft);
@@ -33,7 +34,7 @@ header{
 .logo-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;position:relative;}
 .logo{
   font-family:'Playfair Display',serif;font-weight:600;font-size:1.5rem;letter-spacing:2px;
-  color:var(--ink);text-transform:uppercase;
+  color:var(--wine);text-transform:uppercase;
 }
 .sparkle{display:none;}
 
@@ -53,7 +54,7 @@ header{
 }
 .cat-tile:hover{border-color:var(--accent);background:var(--accent-soft);}
 .cat-tile-icon{font-size:2rem;margin-bottom:10px;display:block;}
-.cat-tile-name{font-family:'Playfair Display',serif;font-weight:600;font-size:0.9rem;color:var(--ink);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;}
+.cat-tile-name{font-family:'Playfair Display',serif;font-weight:600;font-size:0.9rem;color:var(--wine);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;}
 .cat-tile-total{font-size:0.68rem;color:var(--muted);letter-spacing:.3px;}
 .cat-tile-badge{position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;font-size:0.65rem;font-weight:700;border-radius:50%;min-width:20px;height:20px;line-height:20px;padding:0 4px;}
 
@@ -61,7 +62,7 @@ header{
 .back-btn{background:none;border:1px solid var(--line);color:var(--ink);border-radius:2px;padding:8px 16px;font-weight:500;font-size:0.7rem;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;}
 .back-btn:hover{border-color:var(--accent);color:var(--accent);}
 .detail-icon{font-size:1.4rem;}
-.detail-name{font-family:'Playfair Display',serif;font-weight:600;font-size:1.2rem;color:var(--ink);}
+.detail-name{font-family:'Playfair Display',serif;font-weight:600;font-size:1.2rem;color:var(--wine);}
 .detail-total{margin-left:auto;font-size:0.7rem;color:var(--muted);letter-spacing:.3px;}
 
 /* ── Grid de prendas ── */
@@ -95,7 +96,7 @@ header{
 .btn-soft:hover{border-color:#fff;}
 
 .saved-outfit{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:16px;margin-bottom:16px;}
-.saved-outfit-name{font-family:'Playfair Display',serif;font-weight:600;color:var(--ink);margin-bottom:12px;font-size:1rem;}
+.saved-outfit-name{font-family:'Playfair Display',serif;font-weight:600;color:var(--wine);margin-bottom:12px;font-size:1rem;}
 .saved-outfit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;}
 .saved-outfit-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:2px;background:var(--accent-soft);}
 .saved-del{background:none;border:none;color:var(--muted);font-size:0.75rem;cursor:pointer;float:right;}
@@ -103,7 +104,7 @@ header{
 .btn-send:hover{background:var(--accent);color:#fff;}
 
 /* ── Amigas / grupos / revisiones ── */
-.section-title{font-family:'Playfair Display',serif;font-weight:600;color:var(--ink);font-size:1.05rem;margin:8px 0 14px;display:flex;align-items:center;gap:8px;}
+.section-title{font-family:'Playfair Display',serif;font-weight:600;color:var(--wine);font-size:1.05rem;margin:8px 0 14px;display:flex;align-items:center;gap:8px;}
 .section-title .count{background:var(--accent-soft);color:var(--accent-deep);font-size:0.65rem;font-weight:700;border-radius:2px;padding:3px 9px;font-family:'Work Sans',sans-serif;}
 .friend-card,.request-card,.group-card,.review-card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:16px 18px;margin-bottom:12px;}
 .friend-row{display:flex;align-items:center;gap:12px;}
@@ -141,7 +142,7 @@ header{
 .overlay{position:fixed;inset:0;background:rgba(28,25,23,.5);display:none;align-items:center;justify-content:center;z-index:900;padding:16px;}
 .overlay.show{display:flex;}
 .modal{background:#fff;border-radius:2px;padding:26px;width:100%;max-width:400px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 50px rgba(0,0,0,.25);}
-.modal h3{font-family:'Playfair Display',serif;color:var(--ink);font-size:1.15rem;margin-bottom:16px;font-weight:600;}
+.modal h3{font-family:'Playfair Display',serif;color:var(--wine);font-size:1.15rem;margin-bottom:16px;font-weight:600;}
 .modal-close{float:right;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--muted);}
 .field{margin-bottom:14px;}
 .field label{font-size:0.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:6px;}
@@ -155,7 +156,7 @@ header{
 /* ── Login / registro ── */
 .auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg);}
 .auth-box{background:#fff;border:1px solid var(--line);border-radius:2px;padding:40px 32px;width:100%;max-width:380px;box-shadow:0 20px 50px rgba(0,0,0,.06);text-align:center;}
-.auth-logo{font-family:'Playfair Display',serif;font-weight:600;font-size:1.7rem;margin-bottom:6px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);}
+.auth-logo{font-family:'Playfair Display',serif;font-weight:600;font-size:1.7rem;margin-bottom:6px;letter-spacing:2px;text-transform:uppercase;color:var(--wine);}
 .auth-sub{font-size:0.8rem;color:var(--muted);margin-bottom:26px;letter-spacing:.3px;}
 .auth-tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:24px;}
 .auth-tab{flex:1;text-align:center;padding:10px;font-weight:500;font-size:0.72rem;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;}
@@ -200,17 +201,15 @@ header{
 <div id="appScreen" style="display:none;">
 <header>
   <div class="logo-row">
-    <span class="sparkle">✨</span>
     <div class="logo">SocialLook</div>
-    <span class="sparkle">✨</span>
     <button class="logout-btn" onclick="cerrarSesion()">Salir</button>
   </div>
   <div class="tabs">
-    <div class="tab active" id="tabArmario" onclick="cambiarSeccion('armario')">👗 Armario</div>
-    <div class="tab" id="tabRef" onclick="cambiarSeccion('referencias')">📌 Referencias</div>
-    <div class="tab" id="tabOutfits" onclick="cambiarSeccion('outfits')">💫 Outfits</div>
-    <div class="tab" id="tabAmigas" onclick="cambiarSeccion('amigas')">👯 Amigas<span class="tab-badge" id="badgeAmigas" style="display:none;">0</span></div>
-    <div class="tab" id="tabRevisiones" onclick="cambiarSeccion('revisiones')">💌 Revisiones<span class="tab-badge" id="badgeRevisiones" style="display:none;">0</span></div>
+    <div class="tab active" id="tabArmario" onclick="cambiarSeccion('armario')">Armario</div>
+    <div class="tab" id="tabRef" onclick="cambiarSeccion('referencias')">Referencias</div>
+    <div class="tab" id="tabOutfits" onclick="cambiarSeccion('outfits')">Outfits</div>
+    <div class="tab" id="tabAmigas" onclick="cambiarSeccion('amigas')">Amigas<span class="tab-badge" id="badgeAmigas" style="display:none;">0</span></div>
+    <div class="tab" id="tabRevisiones" onclick="cambiarSeccion('revisiones')">Revisiones<span class="tab-badge" id="badgeRevisiones" style="display:none;">0</span></div>
   </div>
 </header>
 
@@ -223,7 +222,7 @@ header{
 <div class="overlay" id="prendaOverlay">
   <div class="modal">
     <button class="modal-close" onclick="cerrarModal('prendaOverlay')">✕</button>
-    <h3>👗 Nueva prenda</h3>
+    <h3>Nueva prenda</h3>
     <img class="preview-img" id="prendaPreview"/>
     <div class="field">
       <label>Foto</label>
@@ -237,7 +236,7 @@ header{
       <label>Categoría</label>
       <select id="prendaCategoria"></select>
     </div>
-    <button class="modal-send" onclick="guardarPrenda()">✨ Guardar prenda</button>
+    <button class="modal-send" onclick="guardarPrenda()">Guardar prenda</button>
   </div>
 </div>
 
@@ -245,7 +244,7 @@ header{
 <div class="overlay" id="refOverlay">
   <div class="modal">
     <button class="modal-close" onclick="cerrarModal('refOverlay')">✕</button>
-    <h3>📌 Nueva referencia</h3>
+    <h3>Nueva referencia</h3>
     <img class="preview-img" id="refPreview"/>
     <div class="field">
       <label>Imagen (captura de Pinterest, etc.)</label>
@@ -255,7 +254,7 @@ header{
       <label>Nota (opcional)</label>
       <textarea id="refNota" rows="2" placeholder="Ej: outfit para fiesta, colores pastel..."></textarea>
     </div>
-    <button class="modal-send" onclick="guardarReferencia()">📌 Guardar referencia</button>
+    <button class="modal-send" onclick="guardarReferencia()">Guardar referencia</button>
   </div>
 </div>
 
@@ -263,12 +262,12 @@ header{
 <div class="overlay" id="amigaOverlay">
   <div class="modal">
     <button class="modal-close" onclick="cerrarModal('amigaOverlay')">✕</button>
-    <h3>👯 Agregar amiga</h3>
+    <h3>Agregar amiga</h3>
     <div class="field">
       <label>Correo de tu amiga</label>
       <input type="email" id="amigaEmail" placeholder="correo@ejemplo.com"/>
     </div>
-    <button class="modal-send" onclick="enviarSolicitudAmistad()">💌 Enviar solicitud</button>
+    <button class="modal-send" onclick="enviarSolicitudAmistad()">Enviar solicitud</button>
   </div>
 </div>
 
@@ -276,7 +275,7 @@ header{
 <div class="overlay" id="grupoOverlay">
   <div class="modal">
     <button class="modal-close" onclick="cerrarModal('grupoOverlay')">✕</button>
-    <h3>👯‍♀️ Nuevo grupo</h3>
+    <h3>Nuevo grupo</h3>
     <div class="field">
       <label>Nombre del grupo</label>
       <input type="text" id="grupoNombre" placeholder="Ej: Mis chismosas favoritas"/>
@@ -285,7 +284,7 @@ header{
       <label>Elige tus amigas</label>
       <div class="checklist" id="grupoChecklist"></div>
     </div>
-    <button class="modal-send" onclick="guardarGrupo()">✨ Crear grupo</button>
+    <button class="modal-send" onclick="guardarGrupo()">Crear grupo</button>
   </div>
 </div>
 
@@ -293,23 +292,23 @@ header{
 <div class="overlay" id="revisionOverlay">
   <div class="modal">
     <button class="modal-close" onclick="cerrarModal('revisionOverlay')">✕</button>
-    <h3>📤 Enviar a revisión</h3>
+    <h3>Enviar a revisión</h3>
     <div class="field">
       <label>¿A quién se lo mandas?</label>
       <select id="revisionDestino"></select>
     </div>
-    <button class="modal-send" onclick="confirmarEnvioRevision()">💌 Mandar para que opinen</button>
+    <button class="modal-send" onclick="confirmarEnvioRevision()">Mandar para que opinen</button>
   </div>
 </div>
 
 <script>
 var CATS=[
-  {id:'tops',nombre:'Tops',icono:'👚'},
-  {id:'bottoms',nombre:'Bottoms',icono:'👖'},
-  {id:'vestidos',nombre:'Vestidos',icono:'👗'},
-  {id:'abrigos',nombre:'Abrigos',icono:'🧥'},
-  {id:'zapatos',nombre:'Zapatos',icono:'👟'},
-  {id:'accesorios',nombre:'Accesorios',icono:'👜'}
+  {id:'tops',nombre:'Tops'},
+  {id:'bottoms',nombre:'Bottoms'},
+  {id:'vestidos',nombre:'Vestidos'},
+  {id:'abrigos',nombre:'Abrigos'},
+  {id:'zapatos',nombre:'Zapatos'},
+  {id:'accesorios',nombre:'Accesorios'}
 ];
 var prendas=[], referencias=[], outfitsGuardados=[];
 var amigos=[], solicitudes=[], grupos=[], revisionesParaMi=[], revisionesMias=[], usuariosDirectorio={};
@@ -318,7 +317,7 @@ var outfitActual=null;
 var archivoSeleccionado=null;
 var outfitParaEnviar=null;
 
-function catInfo(id){ return CATS.find(function(c){return c.id===id;}) || {id:id,nombre:id,icono:'✨'}; }
+function catInfo(id){ return CATS.find(function(c){return c.id===id;}) || {id:id,nombre:id}; }
 function emailDe(uidPersona){ return (usuariosDirectorio[uidPersona]&&usuariosDirectorio[uidPersona].email)||'alguien'; }
 function inicialDe(email){ return (email||'?').charAt(0).toUpperCase(); }
 
@@ -354,7 +353,7 @@ function renderHomeArmario(){
     var tile=document.createElement('div'); tile.className='cat-tile';
     tile.onclick=function(){ categoriaActual=c.id; render(); window.scrollTo(0,0); };
     tile.innerHTML=(items.length>0?'<span class="cat-tile-badge">'+items.length+'</span>':'')+
-      '<span class="cat-tile-icon">'+c.icono+'</span><div class="cat-tile-name">'+c.nombre+'</div><div class="cat-tile-total">'+items.length+' prenda'+(items.length===1?'':'s')+'</div>';
+      '<div class="cat-tile-name">'+c.nombre+'</div><div class="cat-tile-total">'+items.length+' prenda'+(items.length===1?'':'s')+'</div>';
     grid.appendChild(tile);
   });
   wrap.appendChild(grid);
@@ -365,10 +364,10 @@ function renderCategoriaArmario(){
   var items=prendas.filter(function(p){return p.categoria===categoriaActual;});
   var wrap=document.getElementById('wrap'); wrap.innerHTML='';
   var head=document.createElement('div'); head.className='detail-head';
-  head.innerHTML='<button class="back-btn" onclick="categoriaActual=null;render();">← Armario</button><span class="detail-icon">'+info.icono+'</span><span class="detail-name">'+info.nombre+'</span><span class="detail-total">'+items.length+' prenda'+(items.length===1?'':'s')+'</span>';
+  head.innerHTML='<button class="back-btn" onclick="categoriaActual=null;render();">← Armario</button><span class="detail-name">'+info.nombre+'</span><span class="detail-total">'+items.length+' prenda'+(items.length===1?'':'s')+'</span>';
   wrap.appendChild(head);
   var grid=document.createElement('div'); grid.className='item-grid';
-  if(items.length===0){ grid.innerHTML='<div class="empty-cat">Aún no tienes prendas aquí 🌸<br/>Toca el botón + para agregar una.</div>'; }
+  if(items.length===0){ grid.innerHTML='<div class="empty-cat">Aún no tienes prendas aquí<br/>Toca el botón + para agregar una.</div>'; }
   else{
     items.forEach(function(p){
       var card=document.createElement('div'); card.className='item-card';
@@ -382,10 +381,10 @@ function renderCategoriaArmario(){
 function renderReferencias(){
   var wrap=document.getElementById('wrap'); wrap.innerHTML='';
   var head=document.createElement('div'); head.className='detail-head';
-  head.innerHTML='<span class="detail-icon">📌</span><span class="detail-name">Referencias</span><span class="detail-total">'+referencias.length+' guardada'+(referencias.length===1?'':'s')+'</span>';
+  head.innerHTML='<span class="detail-name">Referencias</span><span class="detail-total">'+referencias.length+' guardada'+(referencias.length===1?'':'s')+'</span>';
   wrap.appendChild(head);
   if(referencias.length===0){
-    wrap.innerHTML+='<div class="empty-cat">Guarda capturas de Pinterest o looks que te inspiren 💖<br/>Toca el botón + para agregar una.</div>';
+    wrap.innerHTML+='<div class="empty-cat">Guarda capturas de Pinterest o looks que te inspiren<br/>Toca el botón + para agregar una.</div>';
     return;
   }
   var grid=document.createElement('div'); grid.className='ref-grid';
@@ -401,21 +400,21 @@ function renderOutfits(){
   var wrap=document.getElementById('wrap'); wrap.innerHTML='';
   var box=document.createElement('div'); box.className='outfit-gen-box';
   box.innerHTML=
-    '<div class="outfit-gen-title">✨ Generador de outfits</div>'+
+    '<div class="outfit-gen-title">Generador de outfits</div>'+
     '<div class="outfit-gen-sub">Arma una combinación al azar con tus propias prendas</div>'+
-    '<button class="btn-magic" onclick="generarOutfit()">🔮 Generar outfit</button>'+
+    '<button class="btn-magic" onclick="generarOutfit()">Generar outfit</button>'+
     '<div id="outfitPreviewWrap"></div>';
   wrap.appendChild(box);
   if(outfitActual) pintarOutfitActual();
 
   if(outfitsGuardados.length>0){
-    var titulo=document.createElement('div'); titulo.className='detail-name'; titulo.style.marginBottom='12px'; titulo.textContent='💫 Mis outfits guardados';
+    var titulo=document.createElement('div'); titulo.className='detail-name'; titulo.style.marginBottom='12px'; titulo.textContent='Mis outfits guardados';
     wrap.appendChild(titulo);
     outfitsGuardados.forEach(function(o){
       var box2=document.createElement('div'); box2.className='saved-outfit';
       var grid='<div class="saved-outfit-grid">'+o.prendas.map(function(p){return '<img src="'+p.imagenUrl+'" title="'+escapeHtml(p.nombre)+'"/>';}).join('')+'</div>';
       box2.innerHTML='<button class="saved-del" onclick="eliminarOutfitGuardado(\''+o._id+'\')">✕</button><div class="saved-outfit-name">'+escapeHtml(o.nombre)+'</div>'+grid+
-        '<div style="margin-top:10px;"><button class="btn-send" onclick="abrirEnviarRevisionGuardado(\''+o._id+'\')">📤 Enviar a revisión</button></div>';
+        '<div style="margin-top:10px;"><button class="btn-send" onclick="abrirEnviarRevisionGuardado(\''+o._id+'\')">Enviar a revisión</button></div>';
       wrap.appendChild(box2);
     });
   }
@@ -423,7 +422,7 @@ function renderOutfits(){
 
 function generarOutfit(){
   var catsConItems=CATS.filter(function(c){return prendas.some(function(p){return p.categoria===c.id;});});
-  if(catsConItems.length===0){ alert('Agrega algunas prendas a tu armario primero 🌸'); return; }
+  if(catsConItems.length===0){ alert('Agrega algunas prendas a tu armario primero'); return; }
   var seleccion=[];
   catsConItems.forEach(function(c){
     var opciones=prendas.filter(function(p){return p.categoria===c.id;});
@@ -439,9 +438,9 @@ function pintarOutfitActual(){
   w.innerHTML=
     '<div class="outfit-preview">'+outfitActual.map(function(p){return '<div class="item-card"><img src="'+p.imagenUrl+'"/><div class="item-name">'+escapeHtml(p.nombre)+'</div></div>';}).join('')+'</div>'+
     '<div class="outfit-actions">'+
-      '<button class="btn-soft" onclick="generarOutfit()">🔀 Otra combinación</button>'+
-      '<button class="btn-magic" onclick="guardarOutfitActual()">💾 Guardar outfit</button>'+
-      '<button class="btn-send" onclick="abrirEnviarRevisionActual()">📤 Enviar a revisión</button>'+
+      '<button class="btn-soft" onclick="generarOutfit()">Otra combinación</button>'+
+      '<button class="btn-magic" onclick="guardarOutfitActual()">Guardar outfit</button>'+
+      '<button class="btn-send" onclick="abrirEnviarRevisionActual()">Enviar a revisión</button>'+
     '</div>';
 }
 
@@ -473,7 +472,7 @@ function previsualizar(input,imgId){
 }
 function abrirModalPrenda(){
   var sel=document.getElementById('prendaCategoria'); sel.innerHTML='';
-  CATS.forEach(function(c){ var o=document.createElement('option'); o.value=c.id; o.textContent=c.icono+' '+c.nombre; sel.appendChild(o); });
+  CATS.forEach(function(c){ var o=document.createElement('option'); o.value=c.id; o.textContent=c.nombre; sel.appendChild(o); });
   if(categoriaActual) sel.value=categoriaActual;
   document.getElementById('prendaNombre').value='';
   document.getElementById('prendaFoto').value='';
@@ -509,12 +508,12 @@ function eliminarReferencia(id){ if(confirm('¿Eliminar esta referencia?') && wi
 function renderAmigas(){
   var wrap=document.getElementById('wrap'); wrap.innerHTML='';
   var head=document.createElement('div'); head.className='detail-head';
-  head.innerHTML='<span class="detail-icon">👯</span><span class="detail-name">Amigas</span>';
+  head.innerHTML='<span class="detail-name">Amigas</span>';
   wrap.appendChild(head);
 
   if(solicitudes.length>0){
     var t1=document.createElement('div'); t1.className='section-title';
-    t1.innerHTML='💌 Solicitudes pendientes <span class="count">'+solicitudes.length+'</span>';
+    t1.innerHTML='Solicitudes pendientes <span class="count">'+solicitudes.length+'</span>';
     wrap.appendChild(t1);
     solicitudes.forEach(function(s){
       var email=s.deEmail||'alguien';
@@ -526,10 +525,10 @@ function renderAmigas(){
   }
 
   var t2=document.createElement('div'); t2.className='section-title';
-  t2.innerHTML='👭 Mis amigas <span class="count">'+amigos.length+'</span>';
+  t2.innerHTML='Mis amigas <span class="count">'+amigos.length+'</span>';
   wrap.appendChild(t2);
   if(amigos.length===0){
-    wrap.innerHTML+='<div class="empty-cat">Aún no tienes amigas agregadas 🌸<br/>Toca el botón + para invitar a una.</div>';
+    wrap.innerHTML+='<div class="empty-cat">Aún no tienes amigas agregadas<br/>Toca el botón + para invitar a una.</div>';
   } else {
     amigos.forEach(function(a){
       var card=document.createElement('div'); card.className='friend-card';
@@ -540,7 +539,7 @@ function renderAmigas(){
   }
 
   var t3=document.createElement('div'); t3.className='section-title'; t3.style.marginTop='18px';
-  t3.innerHTML='👯‍♀️ Mis grupos <span class="count">'+grupos.length+'</span>';
+  t3.innerHTML='Mis grupos <span class="count">'+grupos.length+'</span>';
   wrap.appendChild(t3);
   var btnGrupo=document.createElement('button'); btnGrupo.className='btn-soft'; btnGrupo.style.marginBottom='12px'; btnGrupo.textContent='+ Crear grupo';
   btnGrupo.onclick=abrirModalGrupo;
@@ -605,7 +604,7 @@ function abrirEnviarRevisionGuardado(id){
   abrirModalRevision();
 }
 function abrirModalRevision(){
-  if(amigos.length===0&&grupos.length===0){ alert('Agrega amigas o crea un grupo primero, en la pestaña 👯 Amigas'); return; }
+  if(amigos.length===0&&grupos.length===0){ alert('Agrega amigas o crea un grupo primero, en la pestaña Amigas'); return; }
   var sel=document.getElementById('revisionDestino'); sel.innerHTML='';
   if(amigos.length>0){
     var og=document.createElement('optgroup'); og.label='Amigas';
@@ -635,17 +634,17 @@ function confirmarEnvioRevision(){
   if(window._enviarRevision) window._enviarRevision(outfitParaEnviar.nombre,outfitParaEnviar.prendas,destinatarios,etiqueta);
   outfitParaEnviar=null;
   cerrarModal('revisionOverlay');
-  alert('✨ ¡Listo! Ya se lo mandaste para que opinen.');
+  alert('¡Listo! Ya se lo mandaste para que opinen.');
 }
 
 function renderRevisiones(){
   var wrap=document.getElementById('wrap'); wrap.innerHTML='';
   var head=document.createElement('div'); head.className='detail-head';
-  head.innerHTML='<span class="detail-icon">💌</span><span class="detail-name">Revisiones</span>';
+  head.innerHTML='<span class="detail-name">Revisiones</span>';
   wrap.appendChild(head);
 
   var t1=document.createElement('div'); t1.className='section-title';
-  t1.innerHTML='👀 Para que opines <span class="count">'+revisionesParaMi.length+'</span>';
+  t1.innerHTML='Para que opines <span class="count">'+revisionesParaMi.length+'</span>';
   wrap.appendChild(t1);
   if(revisionesParaMi.length===0){
     wrap.innerHTML+='<div class="empty-cat">Nadie te ha mandado un outfit para opinar todavía.</div>';
@@ -654,10 +653,10 @@ function renderRevisiones(){
   }
 
   var t2=document.createElement('div'); t2.className='section-title'; t2.style.marginTop='18px';
-  t2.innerHTML='📤 Mis envíos <span class="count">'+revisionesMias.length+'</span>';
+  t2.innerHTML='Mis envíos <span class="count">'+revisionesMias.length+'</span>';
   wrap.appendChild(t2);
   if(revisionesMias.length===0){
-    wrap.innerHTML+='<div class="empty-cat">Todavía no has mandado ningún outfit a revisión. Ve a 💫 Outfits y manda uno.</div>';
+    wrap.innerHTML+='<div class="empty-cat">Todavía no has mandado ningún outfit a revisión. Ve a Outfits y manda uno.</div>';
   } else {
     revisionesMias.forEach(function(r){ wrap.appendChild(renderReviewCardMia(r)); });
   }
@@ -669,8 +668,8 @@ function renderReviewCardParaMi(r){
   var items='<div class="review-items">'+r.prendas.map(function(p){return '<img src="'+p.imagenUrl+'" title="'+escapeHtml(p.nombre)+'"/>';}).join('')+'</div>';
   var ya=r._miReaccion;
   var botones='<div class="reaction-buttons">'+
-    '<button class="btn-reaction'+(ya&&ya.tipo==='rechazado'?' rechazado':'')+'" onclick="reaccionar(\''+r._id+'\',\'rechazado\')">❌</button>'+
-    '<button class="btn-reaction'+(ya&&ya.tipo==='aprobado'?' aprobado':'')+'" onclick="reaccionar(\''+r._id+'\',\'aprobado\')">✅</button>'+
+    '<button class="btn-reaction'+(ya&&ya.tipo==='rechazado'?' rechazado':'')+'" onclick="reaccionar(\''+r._id+'\',\'rechazado\')">✕</button>'+
+    '<button class="btn-reaction'+(ya&&ya.tipo==='aprobado'?' aprobado':'')+'" onclick="reaccionar(\''+r._id+'\',\'aprobado\')">✓</button>'+
     '</div>';
   var comentario='<input type="text" class="comment-input" id="comentario_'+r._id+'" placeholder="Deja una sugerencia (opcional)" value="'+(ya&&ya.comentario?escapeHtml(ya.comentario).replace(/"/g,'&quot;'):'')+'" onblur="guardarComentario(\''+r._id+'\')"/>';
   card.innerHTML=header+items+botones+comentario;
@@ -684,8 +683,8 @@ function renderReviewCardMia(r){
   var lista='<div class="reactions-list">'+r.destinatarios.map(function(destUid){
     var re=(r._reacciones||{})[destUid];
     var email=emailDe(destUid);
-    if(!re) return '<div class="reaction-item"><span class="reaction-icon">⏳</span><span class="pending-tag">'+escapeHtml(email)+' todavía no ha respondido</span></div>';
-    var icono=re.tipo==='aprobado'?'✅':'❌';
+    if(!re) return '<div class="reaction-item"><span class="pending-tag">'+escapeHtml(email)+' todavía no ha respondido</span></div>';
+    var icono=re.tipo==='aprobado'?'✓':'✕';
     return '<div class="reaction-item"><span class="reaction-icon">'+icono+'</span><div><b>'+escapeHtml(email)+'</b>'+(re.comentario?'<div class="re">"'+escapeHtml(re.comentario)+'"</div>':'')+'</div></div>';
   }).join('')+'</div>';
   card.innerHTML=header+items+lista;
@@ -956,16 +955,16 @@ window._eliminarOutfit=async function(id){
 // ── Amistades ──
 window._enviarSolicitud=async function(email){
   try{
-    if(email===miEmail){ alert('Ese es tu propio correo 🌸'); return; }
+    if(email===miEmail){ alert('Ese es tu propio correo'); return; }
     var qU=query(collection(db,'usuarios'),where('email','==',email));
     var snap=await getDocs(qU);
-    if(snap.empty){ alert('Esa persona todavía no tiene cuenta en SocialLook. Invítala a registrarse primero 💌'); return; }
+    if(snap.empty){ alert('Esa persona todavía no tiene cuenta en SocialLook. Invítala a registrarse primero.'); return; }
     var otroUid=snap.docs[0].id;
     var yaExiste=window.amigos.some(function(a){return a.uid===otroUid;}) || window.solicitudes.some(function(s){return s.de===otroUid;});
     if(yaExiste){ alert('Ya son amigas, o ya tienes una solicitud de esa persona pendiente.'); return; }
     await addDoc(collection(db,'amistades'),{de:uid,deEmail:miEmail,para:otroUid,paraEmail:email,estado:'pendiente',fechaCreacion:serverTimestamp()});
-    enviarCorreo(email,email,'¡Tienes una nueva solicitud de amistad en SocialLook! ✨','"'+miEmail+'" quiere agregarte como amiga en SocialLook para compartir outfits y pedirse opiniones. Entra a la app para aceptar la solicitud.');
-    alert('💌 ¡Solicitud enviada!');
+    enviarCorreo(email,email,'¡Tienes una nueva solicitud de amistad en SocialLook!','"'+miEmail+'" quiere agregarte como amiga en SocialLook para compartir outfits y pedirse opiniones. Entra a la app para aceptar la solicitud.');
+    alert('¡Solicitud enviada!');
   }catch(e){ alert('Error enviando la solicitud: '+e.message); }
 };
 window._responderSolicitud=async function(id,aceptar){
@@ -975,7 +974,7 @@ window._responderSolicitud=async function(id,aceptar){
     if(aceptar) await updateDoc(doc(db,'amistades',id),{estado:'aceptada'});
     else await deleteDoc(doc(db,'amistades',id));
     if(aceptar&&datos&&datos.deEmail){
-      enviarCorreo(datos.deEmail,datos.deEmail,'¡'+miEmail+' aceptó tu solicitud en SocialLook! 🎉','Ya son amigas en SocialLook. Ahora pueden mandarse outfits para pedirse opiniones.');
+      enviarCorreo(datos.deEmail,datos.deEmail,'¡'+miEmail+' aceptó tu solicitud en SocialLook!','Ya son amigas en SocialLook. Ahora pueden mandarse outfits para pedirse opiniones.');
     }
   }catch(e){ alert('Error: '+e.message); }
 };
@@ -1001,7 +1000,7 @@ window._enviarRevision=async function(nombre,prendasOutfit,destinatarios,etiquet
     destinatarios.forEach(async function(destUid){
       var uSnap=await getDoc(doc(db,'usuarios',destUid)).catch(function(){return null;});
       var destEmail=uSnap&&uSnap.exists()?uSnap.data().email:null;
-      if(destEmail) enviarCorreo(destEmail,destEmail,miEmail+' te mandó un outfit para que opines ✨','"'+nombre+'" — entra a SocialLook para verlo y decirle qué te parece (❌ o ✅).');
+      if(destEmail) enviarCorreo(destEmail,destEmail,miEmail+' te mandó un outfit para que opines','"'+nombre+'" — entra a SocialLook para verlo y decirle qué te parece (✕ o ✓).');
     });
   }catch(e){ alert('Error mandando el outfit: '+e.message); }
 };
