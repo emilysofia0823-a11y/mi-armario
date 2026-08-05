@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -751,7 +752,7 @@ render();
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, doc, setDoc, getDocs, deleteDoc, updateDoc, onSnapshot, serverTimestamp, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc, doc, setDoc, getDoc, getDocs, deleteDoc, updateDoc, onSnapshot, serverTimestamp, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -762,6 +763,15 @@ var auth=getAuth(app);
 var uid=null, miEmail=null;
 var unsubs=[];
 var revSubs={}; // unsubscribe de reacciones por revision (para "Mis envios")
+
+// ── Notificaciones por correo (EmailJS) ──
+emailjs.init({publicKey:'n7rwRLcMwLIMV_zCA'});
+function enviarCorreo(toEmail,toName,subject,message){
+  if(!toEmail) return;
+  emailjs.send('service_l6gn7eg','template_nots08s',{
+    to_email:toEmail, to_name:toName||toEmail, subject:subject, message:message
+  }).catch(function(e){ console.warn('No se pudo enviar el correo:',e); });
+}
 
 function traducirErrorAuth(e){
   var c=e&&e.code||'';
@@ -973,13 +983,19 @@ window._enviarSolicitud=async function(email){
     var yaExiste=window.amigos.some(function(a){return a.uid===otroUid;}) || window.solicitudes.some(function(s){return s.de===otroUid;});
     if(yaExiste){ alert('Ya son amigas, o ya tienes una solicitud de esa persona pendiente.'); return; }
     await addDoc(collection(db,'amistades'),{de:uid,deEmail:miEmail,para:otroUid,paraEmail:email,estado:'pendiente',fechaCreacion:serverTimestamp()});
+    enviarCorreo(email,email,'¡Tienes una nueva solicitud de amistad en SocialLook! ✨','"'+miEmail+'" quiere agregarte como amiga en SocialLook para compartir outfits y pedirse opiniones. Entra a la app para aceptar la solicitud.');
     alert('💌 ¡Solicitud enviada!');
   }catch(e){ alert('Error enviando la solicitud: '+e.message); }
 };
 window._responderSolicitud=async function(id,aceptar){
   try{
+    var snap=await getDoc(doc(db,'amistades',id));
+    var datos=snap.exists()?snap.data():null;
     if(aceptar) await updateDoc(doc(db,'amistades',id),{estado:'aceptada'});
     else await deleteDoc(doc(db,'amistades',id));
+    if(aceptar&&datos&&datos.deEmail){
+      enviarCorreo(datos.deEmail,datos.deEmail,'¡'+miEmail+' aceptó tu solicitud en SocialLook! 🎉','Ya son amigas en SocialLook. Ahora pueden mandarse outfits para pedirse opiniones.');
+    }
   }catch(e){ alert('Error: '+e.message); }
 };
 window._quitarAmiga=async function(id){
@@ -1000,6 +1016,11 @@ window._enviarRevision=async function(nombre,prendasOutfit,destinatarios,etiquet
     await addDoc(collection(db,'outfit_revisiones'),{
       autorUid:uid,autorEmail:miEmail,nombre:nombre,prendas:prendasOutfit,
       destinatarios:destinatarios,etiqueta:etiqueta,fechaCreacion:serverTimestamp()
+    });
+    destinatarios.forEach(async function(destUid){
+      var uSnap=await getDoc(doc(db,'usuarios',destUid)).catch(function(){return null;});
+      var destEmail=uSnap&&uSnap.exists()?uSnap.data().email:null;
+      if(destEmail) enviarCorreo(destEmail,destEmail,miEmail+' te mandó un outfit para que opines ✨','"'+nombre+'" — entra a SocialLook para verlo y decirle qué te parece (❌ o ✅).');
     });
   }catch(e){ alert('Error mandando el outfit: '+e.message); }
 };
