@@ -37,6 +37,8 @@ header{
   color:var(--wine);text-transform:uppercase;
 }
 .sparkle{display:none;}
+.logo-mark{height:26px;width:auto;display:block;}
+.logo-mark-lg{height:46px;width:auto;display:block;margin:0 auto 10px;}
 
 .tabs{display:flex;gap:22px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px;justify-content:center;}
 .tabs::-webkit-scrollbar{height:0;}
@@ -212,10 +214,12 @@ header{
 /* Paneles grandes de features (distribución tipo Vélez: bloques full-bleed en grid) */
 .feature-grid{display:grid;grid-template-columns:1fr;}
 @media(min-width:760px){.feature-grid{grid-template-columns:1fr 1fr;}}
-.feature-panel{position:relative;min-height:260px;padding:44px 30px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:var(--ink);}
-.feature-panel.f-wine{background:var(--wine);}
-.feature-panel.f-cognac{background:var(--accent);}
-.feature-panel.f-deep{background:var(--wine-deep);}
+.feature-panel{position:relative;min-height:320px;padding:44px 30px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:var(--ink);background-size:cover;background-position:center;}
+.feature-panel.f-wine{background-color:var(--wine);}
+.feature-panel.f-cognac{background-color:var(--accent);}
+.feature-panel.f-deep{background-color:var(--wine-deep);}
+.feature-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.78) 100%);}
+.feature-panel>*{position:relative;z-index:1;}
 .fp-label{font-family:'Playfair Display',serif;font-weight:700;font-size:1.9rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
 .fp-sub{font-size:0.82rem;opacity:.85;margin-bottom:16px;max-width:320px;line-height:1.55;}
 .fp-link{font-size:0.66rem;letter-spacing:1.3px;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:3px;width:fit-content;}
@@ -245,6 +249,7 @@ header{
 
   <div class="hero-split">
     <div class="hero-copy">
+      <img src="assets/logo-sl.jpg" class="logo-mark-lg" style="margin:0 0 12px;" alt="SL"/>
       <div class="hero-eyebrow">SocialLook</div>
       <h1 class="hero-title">Tu clóset.<br/>Sus opiniones.<br/>Un solo lugar.</h1>
       <p class="hero-sub">Guarda tu ropa, arma combinaciones y mándaselas a tus amigas para que voten antes de salir — como cuando les escribes por el chat, pero ordenado.</p>
@@ -272,22 +277,22 @@ header{
   </div>
 
   <div class="feature-grid">
-    <div class="feature-panel">
+    <div class="feature-panel" style="background-image:url('assets/cat-zapatos.jpg');">
       <div class="fp-label">Armario</div>
       <div class="fp-sub">Sube fotos de tu ropa y organízala por categoría: tops, bottoms, vestidos, abrigos, zapatos, accesorios.</div>
       <div class="fp-link">Guarda tus prendas</div>
     </div>
-    <div class="feature-panel f-wine">
+    <div class="feature-panel f-wine" style="background-image:url('assets/cat-abrigos.jpg');">
       <div class="fp-label">Outfits</div>
       <div class="fp-sub">Genera combinaciones al azar con tu propia ropa o arma la tuya y guárdala para después.</div>
       <div class="fp-link">Arma tu look</div>
     </div>
-    <div class="feature-panel f-cognac">
+    <div class="feature-panel f-cognac" style="background-image:url('assets/cat-accesorios.jpg');">
       <div class="fp-label">Amigas</div>
       <div class="fp-sub">Agrega a tus amigas o arma un grupo para compartir outfits con ellas cuando quieras.</div>
       <div class="fp-link">Suma a tu grupo</div>
     </div>
-    <div class="feature-panel f-deep">
+    <div class="feature-panel f-deep" style="background-image:url('assets/cat-tops.jpg');">
       <div class="fp-label">Revisiones</div>
       <div class="fp-sub">Manda tu outfit antes de salir y que te digan qué opinan con un ✓ o un ✕ y sugerencias.</div>
       <div class="fp-link">Pide su opinión</div>
@@ -323,6 +328,7 @@ header{
 <div class="overlay" id="authOverlay">
   <div class="auth-box" style="position:relative;">
     <button class="auth-back" onclick="cerrarAuthOverlay()">✕</button>
+    <img src="assets/logo-sl.jpg" class="logo-mark-lg" alt="SL"/>
     <div class="auth-logo">SocialLook</div>
     <div class="auth-sub">Tu guardarropa y tus outfits, en un solo lugar</div>
     <div class="auth-tabs">
@@ -346,6 +352,7 @@ header{
 <div id="appScreen" style="display:none;">
 <header>
   <div class="logo-row">
+    <img src="assets/logo-sl.jpg" class="logo-mark" alt="SL"/>
     <div class="logo">SocialLook</div>
     <button class="logout-btn" onclick="cerrarSesion()">Salir</button>
   </div>
