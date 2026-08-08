@@ -105,6 +105,23 @@ header{
 .btn-send{background:none;color:var(--accent);border:1px solid var(--accent);padding:9px 18px;border-radius:2px;font-weight:600;font-size:0.7rem;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;}
 .btn-send:hover{background:var(--accent);color:#fff;}
 
+/* ── Tiendas (espacios de marca de ejemplo) ── */
+.tienda-intro{font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:20px;}
+.tienda-filters{margin-bottom:22px;}
+.filter-row{margin-bottom:14px;}
+.filter-label{display:block;font-size:0.62rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.filter-chips{display:flex;gap:8px;flex-wrap:wrap;}
+.filter-chip{background:none;border:1px solid var(--line);color:var(--ink);padding:7px 14px;border-radius:20px;font-size:0.72rem;cursor:pointer;font-family:'Work Sans',sans-serif;}
+.filter-chip.active{background:var(--wine);border-color:var(--wine);color:#fff;}
+.tienda-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:640px){.tienda-grid{grid-template-columns:1fr 1fr;}}
+.tienda-card{position:relative;border-radius:2px;padding:22px 20px;color:#fff;min-height:170px;}
+.tienda-badge{display:inline-block;font-size:0.58rem;letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(255,255,255,.5);border-radius:20px;padding:3px 10px;opacity:.85;margin-bottom:12px;}
+.tienda-nombre{font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;margin-bottom:4px;}
+.tienda-meta{font-size:0.7rem;opacity:.8;letter-spacing:.4px;margin-bottom:14px;}
+.tienda-productos{display:flex;flex-direction:column;gap:6px;border-top:1px solid rgba(255,255,255,.25);padding-top:12px;}
+.tienda-producto{display:flex;justify-content:space-between;font-size:0.78rem;}
+
 /* ── Amigas / grupos / revisiones ── */
 .section-title{font-family:'Playfair Display',serif;font-weight:600;color:var(--wine);font-size:1.05rem;margin:8px 0 14px;display:flex;align-items:center;gap:8px;}
 .section-title .count{background:var(--accent-soft);color:var(--accent-deep);font-size:0.65rem;font-weight:700;border-radius:2px;padding:3px 9px;font-family:'Work Sans',sans-serif;}
@@ -360,6 +377,7 @@ header{
     <div class="tab active" id="tabArmario" onclick="cambiarSeccion('armario')">Armario</div>
     <div class="tab" id="tabRef" onclick="cambiarSeccion('referencias')">Referencias</div>
     <div class="tab" id="tabOutfits" onclick="cambiarSeccion('outfits')">Outfits</div>
+    <div class="tab" id="tabTiendas" onclick="cambiarSeccion('tiendas')">Tiendas</div>
     <div class="tab" id="tabAmigas" onclick="cambiarSeccion('amigas')">Amigas<span class="tab-badge" id="badgeAmigas" style="display:none;">0</span></div>
     <div class="tab" id="tabRevisiones" onclick="cambiarSeccion('revisiones')">Revisiones<span class="tab-badge" id="badgeRevisiones" style="display:none;">0</span></div>
   </div>
@@ -464,6 +482,19 @@ var CATS=[
 ];
 var prendas=[], referencias=[], outfitsGuardados=[];
 var amigos=[], solicitudes=[], grupos=[], revisionesParaMi=[], revisionesMias=[], usuariosDirectorio={};
+
+// Catálogo de ejemplo: cada "tienda" es un espacio de marca de muestra (nombres inventados).
+// Pensado para mostrar cómo se vería la colaboración con marcas reales más adelante.
+var TIENDAS=[
+  {nombre:'Casa Lienzo', ciudad:'barranquilla', presupuesto:'medio', color:'#6D2032', productos:[{nombre:'Vestido midi de lino', precio:'180.000'},{nombre:'Sandalias trenzadas', precio:'95.000'}]},
+  {nombre:'Amara Studio', ciudad:'bogota', presupuesto:'premium', color:'#1C1917', productos:[{nombre:'Blazer estructurado', precio:'420.000'},{nombre:'Bolso de cuero mini', precio:'380.000'}]},
+  {nombre:'Nube Basics', ciudad:'online', presupuesto:'economico', color:'#7C4A32', productos:[{nombre:'Camiseta oversize', precio:'45.000'},{nombre:'Short de denim', precio:'65.000'}]},
+  {nombre:'Estación 7', ciudad:'barranquilla', presupuesto:'economico', color:'#4E1522', productos:[{nombre:'Top halter', precio:'58.000'},{nombre:'Falda satinada', precio:'72.000'}]},
+  {nombre:'Marfil & Co', ciudad:'online', presupuesto:'premium', color:'#5C3624', productos:[{nombre:'Abrigo de lana', precio:'560.000'},{nombre:'Botines de cuero', precio:'340.000'}]},
+  {nombre:'Rúa', ciudad:'bogota', presupuesto:'medio', color:'#8A8178', productos:[{nombre:'Pantalón wide leg', precio:'150.000'},{nombre:'Aretes dorados', precio:'68.000'}]}
+];
+var tiendaFiltroPresupuesto='todos', tiendaFiltroCiudad='todas';
+
 var seccion='armario', categoriaActual=null;
 var outfitActual=null;
 var archivoSeleccionado=null;
@@ -475,9 +506,9 @@ function inicialDe(email){ return (email||'?').charAt(0).toUpperCase(); }
 
 function cambiarSeccion(s){
   seccion=s; categoriaActual=null;
-  ['tabArmario','tabRef','tabOutfits','tabAmigas','tabRevisiones'].forEach(function(id){document.getElementById(id).classList.remove('active');});
-  document.getElementById({armario:'tabArmario',referencias:'tabRef',outfits:'tabOutfits',amigas:'tabAmigas',revisiones:'tabRevisiones'}[s]).classList.add('active');
-  document.getElementById('fab').style.display = (s==='outfits'||s==='revisiones') ? 'none' : 'flex';
+  ['tabArmario','tabRef','tabOutfits','tabTiendas','tabAmigas','tabRevisiones'].forEach(function(id){document.getElementById(id).classList.remove('active');});
+  document.getElementById({armario:'tabArmario',referencias:'tabRef',outfits:'tabOutfits',tiendas:'tabTiendas',amigas:'tabAmigas',revisiones:'tabRevisiones'}[s]).classList.add('active');
+  document.getElementById('fab').style.display = (s==='outfits'||s==='revisiones'||s==='tiendas') ? 'none' : 'flex';
   render();
 }
 
@@ -485,6 +516,7 @@ function render(){
   if(seccion==='armario'){ categoriaActual ? renderCategoriaArmario() : renderHomeArmario(); }
   else if(seccion==='referencias'){ renderReferencias(); }
   else if(seccion==='outfits'){ renderOutfits(); }
+  else if(seccion==='tiendas'){ renderTiendas(); }
   else if(seccion==='amigas'){ renderAmigas(); }
   else if(seccion==='revisiones'){ renderRevisiones(); }
   actualizarBadges();
@@ -570,6 +602,62 @@ function renderOutfits(){
       wrap.appendChild(box2);
     });
   }
+}
+
+// ── Tiendas (espacios de marca de ejemplo) ──
+function renderTiendas(){
+  var wrap=document.getElementById('wrap'); wrap.innerHTML='';
+
+  var head=document.createElement('div'); head.className='detail-head';
+  head.innerHTML='<span class="detail-name">Tiendas</span>';
+  wrap.appendChild(head);
+
+  var intro=document.createElement('div'); intro.className='tienda-intro';
+  intro.innerHTML='Cuando arma tu outfit te falte algo, aquí puedes ver qué te sugieren tiendas aliadas para completarlo. <b>Esto es una demostración</b> — los nombres son de ejemplo, cada tarjeta muestra dónde iría el espacio de una marca real.';
+  wrap.appendChild(intro);
+
+  var filtros=document.createElement('div'); filtros.className='tienda-filters';
+  filtros.innerHTML=
+    '<div class="filter-row"><span class="filter-label">Presupuesto</span><div class="filter-chips" id="chipsPresupuesto"></div></div>'+
+    '<div class="filter-row"><span class="filter-label">Ciudad</span><div class="filter-chips" id="chipsCiudad"></div></div>';
+  wrap.appendChild(filtros);
+
+  renderTiendaChips('chipsPresupuesto',[['todos','Todos'],['economico','Económico'],['medio','Medio'],['premium','Premium']],tiendaFiltroPresupuesto,function(v){ tiendaFiltroPresupuesto=v; renderTiendas(); });
+  renderTiendaChips('chipsCiudad',[['todas','Todas'],['barranquilla','Barranquilla'],['bogota','Bogotá'],['online','Online']],tiendaFiltroCiudad,function(v){ tiendaFiltroCiudad=v; renderTiendas(); });
+
+  var lista=TIENDAS.filter(function(t){
+    return (tiendaFiltroPresupuesto==='todos'||t.presupuesto===tiendaFiltroPresupuesto) &&
+           (tiendaFiltroCiudad==='todas'||t.ciudad===tiendaFiltroCiudad);
+  });
+
+  var grid=document.createElement('div'); grid.className='tienda-grid';
+  if(lista.length===0){
+    grid.innerHTML='<div class="empty-cat">No hay tiendas de ejemplo con esos filtros.</div>';
+  } else {
+    var etiquetaCiudad={barranquilla:'Barranquilla',bogota:'Bogotá',online:'Online'};
+    var etiquetaPresupuesto={economico:'Económico',medio:'Medio',premium:'Premium'};
+    lista.forEach(function(t){
+      var card=document.createElement('div'); card.className='tienda-card'; card.style.background=t.color;
+      var productosHtml=t.productos.map(function(p){
+        return '<div class="tienda-producto"><span>'+escapeHtml(p.nombre)+'</span><span>$'+p.precio+'</span></div>';
+      }).join('');
+      card.innerHTML=
+        '<div class="tienda-badge">Espacio para marca real</div>'+
+        '<div class="tienda-nombre">'+escapeHtml(t.nombre)+'</div>'+
+        '<div class="tienda-meta">'+etiquetaCiudad[t.ciudad]+' · '+etiquetaPresupuesto[t.presupuesto]+'</div>'+
+        '<div class="tienda-productos">'+productosHtml+'</div>';
+      grid.appendChild(card);
+    });
+  }
+  wrap.appendChild(grid);
+}
+function renderTiendaChips(containerId,opciones,valorActual,onSelect){
+  var el=document.getElementById(containerId); if(!el) return; el.innerHTML='';
+  opciones.forEach(function(op){
+    var chip=document.createElement('button'); chip.className='filter-chip'+(valorActual===op[0]?' active':''); chip.textContent=op[1];
+    chip.onclick=function(){ onSelect(op[0]); };
+    el.appendChild(chip);
+  });
 }
 
 function generarOutfit(){
