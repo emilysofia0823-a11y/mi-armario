@@ -1120,7 +1120,7 @@ function actualizarMembresiaBanner(acceso){
   var b=document.getElementById('membresiaBanner');
   if(window._miMembresiaActiva){ b.style.display='none'; return; }
   if(acceso.enPrueba){
-    b.innerHTML='Prueba gratis: te quedan '+acceso.diasRestantes+' día'+(acceso.diasRestantes===1?'':'s')+'. <a href="'+linkWhatsapp('Hola! Quiero activar mi membresía de SocialLook ($'+PRECIO_MEMBRESIA_TEXTO+' COP/mes). Mi correo registrado es: '+miEmail)+'" target="_blank" rel="noopener">Activar membresía</a>';
+    b.innerHTML='Prueba gratis: te quedan '+acceso.diasRestantes+' día'+(acceso.diasRestantes===1?'':'s')+'. <a href="'+linkWhatsapp('Hola! Quiero activar mi membresía de SocialLook ($'+PRECIO_MEMBRESIA_TEXTO+' COP/mes). Mi correo registrado es: '+window.miEmail)+'" target="_blank" rel="noopener">Activar membresía</a>';
     b.style.display='block';
   } else {
     b.style.display='none';
@@ -1134,8 +1134,8 @@ function actualizarCreditosPill(){
 }
 
 function actualizarBotonesWhatsapp(){
-  document.getElementById('paywallWhatsappBtn').href=linkWhatsapp('Hola! Quiero activar mi membresía de SocialLook ($'+PRECIO_MEMBRESIA_TEXTO+' COP/mes). Mi correo registrado es: '+miEmail);
-  document.getElementById('creditosWhatsappBtn').href=linkWhatsapp('Hola! Quiero comprar más créditos en SocialLook. Mi correo registrado es: '+miEmail);
+  document.getElementById('paywallWhatsappBtn').href=linkWhatsapp('Hola! Quiero activar mi membresía de SocialLook ($'+PRECIO_MEMBRESIA_TEXTO+' COP/mes). Mi correo registrado es: '+window.miEmail);
+  document.getElementById('creditosWhatsappBtn').href=linkWhatsapp('Hola! Quiero comprar más créditos en SocialLook. Mi correo registrado es: '+window.miEmail);
 }
 
 function abrirModalCreditos(){
@@ -1146,7 +1146,7 @@ function abrirModalCreditos(){
 
 function mostrarAdminTabSiAplica(){
   var existente=document.getElementById('tabAdmin');
-  if(ADMIN_EMAILS.indexOf(miEmail)===-1){ if(existente) existente.remove(); return; }
+  if(ADMIN_EMAILS.indexOf(window.miEmail)===-1){ if(existente) existente.remove(); return; }
   if(existente) return;
   var tab=document.createElement('div'); tab.className='tab'; tab.id='tabAdmin'; tab.textContent='Admin';
   tab.onclick=function(){ cambiarSeccion('admin'); };
@@ -1345,7 +1345,7 @@ function iniciarSuscripciones(){
 
 onAuthStateChanged(auth,async function(user){
   if(user){
-    uid=user.uid; miEmail=user.email;
+    uid=user.uid; miEmail=user.email; window.miEmail=miEmail;
     window._autenticado=true;
     var perfilRef=doc(db,'usuarios',uid);
     var perfilExistente=await getDoc(perfilRef).catch(function(){return null;});
@@ -1365,7 +1365,7 @@ onAuthStateChanged(auth,async function(user){
     iniciarSuscripciones();
     if(window._quiereEntrar && window.mostrarApp) window.mostrarApp();
   } else {
-    uid=null; miEmail=null;
+    uid=null; miEmail=null; window.miEmail=null;
     window._autenticado=false;
     limpiarSuscripciones();
     window.prendas=[]; window.referencias=[]; window.outfitsGuardados=[];
