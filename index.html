@@ -257,6 +257,35 @@ header{
 
 .auth-back{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);font-size:0.95rem;cursor:pointer;line-height:1;}
 .auth-back:hover{color:var(--accent);}
+
+/* ── Membresía / prueba gratis / créditos ── */
+.membresia-banner{display:none;background:var(--wine);color:#fff;text-align:center;padding:9px 14px;font-size:0.74rem;letter-spacing:.3px;}
+.membresia-banner a,.membresia-banner button{color:#fff;text-decoration:underline;background:none;border:none;font:inherit;cursor:pointer;padding:0;}
+.creditos-pill{background:none;border:1px solid var(--line);color:var(--ink);border-radius:20px;padding:6px 12px;font-size:0.68rem;letter-spacing:.4px;cursor:pointer;white-space:nowrap;}
+.creditos-pill:hover{border-color:var(--accent);color:var(--accent);}
+
+.paywall-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg);}
+.paywall-box{background:#fff;border:1px solid var(--line);border-radius:2px;padding:44px 32px;width:100%;max-width:400px;box-shadow:0 20px 50px rgba(0,0,0,.06);text-align:center;}
+.paywall-box .auth-logo{margin-bottom:4px;}
+.paywall-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--ink);margin:14px 0 10px;}
+.paywall-sub{font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:26px;}
+.paywall-price{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--wine);margin-bottom:4px;}
+.paywall-price span{font-size:0.7rem;color:var(--muted);font-family:'Work Sans',sans-serif;display:block;margin-top:2px;}
+.paywall-cta{display:block;width:100%;background:#25D366;color:#fff;border:1px solid #25D366;padding:15px;border-radius:2px;font-weight:600;font-size:0.82rem;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;margin:22px 0 14px;text-decoration:none;}
+.paywall-cta:hover{background:#1EBE5A;border-color:#1EBE5A;}
+.paywall-back{background:none;border:none;color:var(--muted);font-size:0.76rem;cursor:pointer;text-decoration:underline;}
+
+.overlay-small .modal{max-width:340px;text-align:center;}
+.creditos-precio{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--wine);margin:14px 0 6px;}
+.creditos-precio span{font-size:0.7rem;color:var(--muted);font-family:'Work Sans',sans-serif;display:block;}
+
+.admin-field{margin-bottom:14px;text-align:left;}
+.admin-field label{font-size:0.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:6px;}
+.admin-field input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--ink);padding:11px 13px;border-radius:2px;font-size:0.85rem;outline:none;font-family:inherit;}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+.admin-btn{background:var(--ink);color:#fff;border:1px solid var(--ink);padding:11px 16px;border-radius:2px;font-size:0.72rem;letter-spacing:.4px;text-transform:uppercase;cursor:pointer;flex:1;}
+.admin-btn:hover{background:var(--wine);border-color:var(--wine);}
+.admin-result{font-size:0.78rem;color:var(--muted);margin-top:12px;min-height:18px;}
 </style>
 </head>
 <body>
@@ -371,9 +400,10 @@ header{
   <div class="logo-row">
     <img src="assets/logo-sl.jpg" class="logo-mark" alt="SL"/>
     <div class="logo">SocialLook</div>
+    <button class="creditos-pill" id="creditosPill" style="display:none;" onclick="abrirModalCreditos()">★ 0 créditos</button>
     <button class="logout-btn" onclick="cerrarSesion()">Salir</button>
   </div>
-  <div class="tabs">
+  <div class="tabs" id="tabsRow">
     <div class="tab active" id="tabArmario" onclick="cambiarSeccion('armario')">Armario</div>
     <div class="tab" id="tabRef" onclick="cambiarSeccion('referencias')">Referencias</div>
     <div class="tab" id="tabOutfits" onclick="cambiarSeccion('outfits')">Outfits</div>
@@ -382,10 +412,36 @@ header{
     <div class="tab" id="tabRevisiones" onclick="cambiarSeccion('revisiones')">Revisiones<span class="tab-badge" id="badgeRevisiones" style="display:none;">0</span></div>
   </div>
 </header>
+<div class="membresia-banner" id="membresiaBanner"></div>
 
 <div class="wrap" id="wrap"></div>
 
 <button class="fab" id="fab" onclick="abrirAgregar()" title="Agregar">+</button>
+</div>
+
+<!-- PANTALLA: prueba gratis terminada, pedir membresía -->
+<div class="paywall-wrap" id="paywallWrap" style="display:none;">
+  <div class="paywall-box">
+    <img src="assets/logo-sl.jpg" class="logo-mark-lg" alt="SL"/>
+    <div class="auth-logo">SocialLook</div>
+    <div class="paywall-title">Tu semana de prueba terminó</div>
+    <div class="paywall-sub">Activa tu membresía para seguir guardando tu armario, armando outfits y pidiendo opiniones a tus amigas.</div>
+    <div class="paywall-price">$12.000 COP<span>por mes</span></div>
+    <a class="paywall-cta" id="paywallWhatsappBtn" href="#" target="_blank" rel="noopener">Activar por WhatsApp</a>
+    <button class="paywall-back" onclick="cerrarSesion()">Cerrar sesión</button>
+  </div>
+</div>
+
+<!-- MODAL: comprar créditos -->
+<div class="overlay overlay-small" id="creditosOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrarModal('creditosOverlay')">✕</button>
+    <h3>Tus créditos</h3>
+    <div class="creditos-precio" id="creditosSaldoTexto">0 créditos</div>
+    <div class="paywall-sub" style="margin-bottom:6px;">Los créditos se usan en funciones especiales (como el emparejamiento inteligente con IA, próximamente). Compra un paquete cuando lo necesites.</div>
+    <div class="creditos-precio" style="font-size:1.1rem;">$10.000 COP<span>≈ 20 créditos</span></div>
+    <a class="paywall-cta" id="creditosWhatsappBtn" href="#" target="_blank" rel="noopener" style="background:#25D366;border-color:#25D366;">Comprar por WhatsApp</a>
+  </div>
 </div>
 
 <!-- MODAL: agregar prenda -->
@@ -506,9 +562,10 @@ function inicialDe(email){ return (email||'?').charAt(0).toUpperCase(); }
 
 function cambiarSeccion(s){
   seccion=s; categoriaActual=null;
-  ['tabArmario','tabRef','tabOutfits','tabTiendas','tabAmigas','tabRevisiones'].forEach(function(id){document.getElementById(id).classList.remove('active');});
-  document.getElementById({armario:'tabArmario',referencias:'tabRef',outfits:'tabOutfits',tiendas:'tabTiendas',amigas:'tabAmigas',revisiones:'tabRevisiones'}[s]).classList.add('active');
-  document.getElementById('fab').style.display = (s==='outfits'||s==='revisiones'||s==='tiendas') ? 'none' : 'flex';
+  ['tabArmario','tabRef','tabOutfits','tabTiendas','tabAmigas','tabRevisiones','tabAdmin'].forEach(function(id){var el=document.getElementById(id); if(el) el.classList.remove('active');});
+  var tabId={armario:'tabArmario',referencias:'tabRef',outfits:'tabOutfits',tiendas:'tabTiendas',amigas:'tabAmigas',revisiones:'tabRevisiones',admin:'tabAdmin'}[s];
+  var tabEl=document.getElementById(tabId); if(tabEl) tabEl.classList.add('active');
+  document.getElementById('fab').style.display = (s==='outfits'||s==='revisiones'||s==='tiendas'||s==='admin') ? 'none' : 'flex';
   render();
 }
 
@@ -519,6 +576,7 @@ function render(){
   else if(seccion==='tiendas'){ renderTiendas(); }
   else if(seccion==='amigas'){ renderAmigas(); }
   else if(seccion==='revisiones'){ renderRevisiones(); }
+  else if(seccion==='admin'){ renderAdmin(); }
   actualizarBadges();
 }
 
@@ -943,6 +1001,41 @@ function guardarComentario(revId){
   if(window._reaccionar) window._reaccionar(revId,r._miReaccion.tipo,comentarioEl.value.trim());
 }
 
+// ── Admin (solo visible para ADMIN_EMAILS) ──
+function renderAdmin(){
+  var wrap=document.getElementById('wrap'); wrap.innerHTML='';
+  var head=document.createElement('div'); head.className='detail-head';
+  head.innerHTML='<span class="detail-name">Admin</span>';
+  wrap.appendChild(head);
+
+  var box=document.createElement('div'); box.className='outfit-gen-box'; box.style.textAlign='left';
+  box.innerHTML=
+    '<div class="admin-field"><label>Correo de la usuaria</label><input type="email" id="adminEmail" placeholder="correo@ejemplo.com"/></div>'+
+    '<div class="admin-actions">'+
+      '<button class="admin-btn" onclick="adminActivarMembresia()">Activar membresía (+30 días)</button>'+
+      '<button class="admin-btn" onclick="adminAgregarCreditos()">Agregar 20 créditos</button>'+
+    '</div>'+
+    '<div class="admin-result" id="adminResultado"></div>';
+  wrap.appendChild(box);
+}
+function adminActivarMembresia(){
+  var email=document.getElementById('adminEmail').value.trim().toLowerCase();
+  var res=document.getElementById('adminResultado');
+  if(!email){ res.textContent='Escribe un correo primero.'; return; }
+  res.textContent='Procesando...';
+  if(window._adminActivarMembresia) window._adminActivarMembresia(email);
+}
+function adminAgregarCreditos(){
+  var email=document.getElementById('adminEmail').value.trim().toLowerCase();
+  var res=document.getElementById('adminResultado');
+  if(!email){ res.textContent='Escribe un correo primero.'; return; }
+  res.textContent='Procesando...';
+  if(window._adminAgregarCreditos) window._adminAgregarCreditos(email,20);
+}
+function adminMostrarResultado(msg){
+  var res=document.getElementById('adminResultado'); if(res) res.textContent=msg;
+}
+
 // ── Acceso (login / registro) ──
 var authModo='login';
 function cambiarAuthTab(modo){
@@ -1002,13 +1095,84 @@ function initDemo(){
 
 // ── Flujo portada → acceso → app ──
 window._quiereEntrar=false;
+
+// ── Membresía / prueba gratis / créditos ──
+var TRIAL_DIAS=7;
+var PRECIO_MEMBRESIA_TEXTO='12.000';
+var PRECIO_CREDITOS_TEXTO='10.000';
+var WHATSAPP_NUM='573233813982';
+var ADMIN_EMAILS=['emilysofia0823@gmail.com'];
+
+function calcularAcceso(){
+  var fc=window._miFechaCreacion||new Date();
+  var trialFin=new Date(fc.getTime()+TRIAL_DIAS*24*60*60*1000);
+  var ahora=new Date();
+  var enPrueba=ahora<trialFin;
+  var diasRestantes=Math.max(0,Math.ceil((trialFin-ahora)/(24*60*60*1000)));
+  return { tieneAcceso: enPrueba||window._miMembresiaActiva, enPrueba: enPrueba, diasRestantes: diasRestantes };
+}
+
+function linkWhatsapp(mensaje){
+  return 'https://wa.me/'+WHATSAPP_NUM+'?text='+encodeURIComponent(mensaje);
+}
+
+function actualizarMembresiaBanner(acceso){
+  var b=document.getElementById('membresiaBanner');
+  if(window._miMembresiaActiva){ b.style.display='none'; return; }
+  if(acceso.enPrueba){
+    b.innerHTML='Prueba gratis: te quedan '+acceso.diasRestantes+' día'+(acceso.diasRestantes===1?'':'s')+'. <a href="'+linkWhatsapp('Hola! Quiero activar mi membresía de SocialLook ($'+PRECIO_MEMBRESIA_TEXTO+' COP/mes). Mi correo registrado es: '+miEmail)+'" target="_blank" rel="noopener">Activar membresía</a>';
+    b.style.display='block';
+  } else {
+    b.style.display='none';
+  }
+}
+
+function actualizarCreditosPill(){
+  var pill=document.getElementById('creditosPill');
+  pill.textContent='★ '+(window._misCreditos||0)+' créditos';
+  pill.style.display='inline-block';
+}
+
+function actualizarBotonesWhatsapp(){
+  document.getElementById('paywallWhatsappBtn').href=linkWhatsapp('Hola! Quiero activar mi membresía de SocialLook ($'+PRECIO_MEMBRESIA_TEXTO+' COP/mes). Mi correo registrado es: '+miEmail);
+  document.getElementById('creditosWhatsappBtn').href=linkWhatsapp('Hola! Quiero comprar más créditos en SocialLook. Mi correo registrado es: '+miEmail);
+}
+
+function abrirModalCreditos(){
+  document.getElementById('creditosSaldoTexto').textContent=(window._misCreditos||0)+' créditos';
+  actualizarBotonesWhatsapp();
+  document.getElementById('creditosOverlay').classList.add('show');
+}
+
+function mostrarAdminTabSiAplica(){
+  var existente=document.getElementById('tabAdmin');
+  if(ADMIN_EMAILS.indexOf(miEmail)===-1){ if(existente) existente.remove(); return; }
+  if(existente) return;
+  var tab=document.createElement('div'); tab.className='tab'; tab.id='tabAdmin'; tab.textContent='Admin';
+  tab.onclick=function(){ cambiarSeccion('admin'); };
+  document.getElementById('tabsRow').appendChild(tab);
+}
+
 function mostrarApp(){
   document.getElementById('landingWrap').style.display='none';
   document.getElementById('authOverlay').classList.remove('show');
+  var acceso=calcularAcceso();
+  if(!acceso.tieneAcceso){ mostrarPaywall(); return; }
+  document.getElementById('paywallWrap').style.display='none';
   document.getElementById('appScreen').style.display='block';
+  actualizarMembresiaBanner(acceso);
+  actualizarCreditosPill();
+  actualizarBotonesWhatsapp();
+  mostrarAdminTabSiAplica();
+}
+function mostrarPaywall(){
+  document.getElementById('appScreen').style.display='none';
+  actualizarBotonesWhatsapp();
+  document.getElementById('paywallWrap').style.display='flex';
 }
 function mostrarLanding(){
   document.getElementById('appScreen').style.display='none';
+  document.getElementById('paywallWrap').style.display='none';
   document.getElementById('authOverlay').classList.remove('show');
   document.getElementById('landingWrap').style.display='block';
   window._quiereEntrar=false;
@@ -1183,7 +1347,18 @@ onAuthStateChanged(auth,async function(user){
   if(user){
     uid=user.uid; miEmail=user.email;
     window._autenticado=true;
-    await setDoc(doc(db,'usuarios',uid),{email:miEmail,fechaCreacion:serverTimestamp()},{merge:true}).catch(function(){});
+    var perfilRef=doc(db,'usuarios',uid);
+    var perfilExistente=await getDoc(perfilRef).catch(function(){return null;});
+    if(perfilExistente&&perfilExistente.exists()){
+      await setDoc(perfilRef,{email:miEmail},{merge:true}).catch(function(){});
+    } else {
+      await setDoc(perfilRef,{email:miEmail,fechaCreacion:serverTimestamp(),membresiaActiva:false,creditos:0},{merge:true}).catch(function(){});
+    }
+    var perfilSnap=await getDoc(perfilRef).catch(function(){return null;});
+    var perfil=perfilSnap&&perfilSnap.exists()?perfilSnap.data():{};
+    window._miFechaCreacion=perfil.fechaCreacion&&perfil.fechaCreacion.toDate?perfil.fechaCreacion.toDate():new Date();
+    window._miMembresiaActiva=!!perfil.membresiaActiva;
+    window._misCreditos=perfil.creditos||0;
     window.prendas=[]; window.referencias=[]; window.outfitsGuardados=[];
     window.amigos=[]; window.solicitudes=[]; window.grupos=[];
     window.revisionesMias=[]; window.revisionesParaMi=[]; window.usuariosDirectorio={};
@@ -1284,6 +1459,30 @@ window._crearGrupo=async function(nombre,miembros){
   try{
     await addDoc(collection(db,'grupos'),{nombre:nombre,creadorUid:uid,miembros:miembros.concat([uid]),fechaCreacion:serverTimestamp()});
   }catch(e){ alert('Error creando el grupo: '+e.message); }
+};
+
+// ── Admin: activar membresía / agregar créditos a mano tras confirmar pago por WhatsApp ──
+window._adminActivarMembresia=async function(emailBuscado){
+  try{
+    var qU=query(collection(db,'usuarios'),where('email','==',emailBuscado));
+    var snap=await getDocs(qU);
+    if(snap.empty){ if(window.adminMostrarResultado) adminMostrarResultado('No existe ninguna cuenta con ese correo.'); return; }
+    var docId=snap.docs[0].id;
+    var vigenteHasta=new Date(Date.now()+30*24*60*60*1000);
+    await updateDoc(doc(db,'usuarios',docId),{membresiaActiva:true,membresiaVigenteHasta:vigenteHasta});
+    if(window.adminMostrarResultado) adminMostrarResultado('Listo: membresía activada para '+emailBuscado+' hasta '+vigenteHasta.toLocaleDateString('es-CO')+'.');
+  }catch(e){ if(window.adminMostrarResultado) adminMostrarResultado('Error: '+e.message); }
+};
+window._adminAgregarCreditos=async function(emailBuscado,cantidad){
+  try{
+    var qU=query(collection(db,'usuarios'),where('email','==',emailBuscado));
+    var snap=await getDocs(qU);
+    if(snap.empty){ if(window.adminMostrarResultado) adminMostrarResultado('No existe ninguna cuenta con ese correo.'); return; }
+    var docId=snap.docs[0].id;
+    var actual=snap.docs[0].data().creditos||0;
+    await updateDoc(doc(db,'usuarios',docId),{creditos:actual+cantidad});
+    if(window.adminMostrarResultado) adminMostrarResultado('Listo: '+emailBuscado+' ahora tiene '+(actual+cantidad)+' créditos.');
+  }catch(e){ if(window.adminMostrarResultado) adminMostrarResultado('Error: '+e.message); }
 };
 
 // ── Revisiones de outfit ──
